@@ -1,15 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">-->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.cc.gogo.Fragments.InputDataFragment">
+
+    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -82,14 +77,7 @@
             android:layout_marginTop="10dp"
             android:background="@android:color/darker_gray" />
 
-
-
-        <com.ashokvarma.bottomnavigation.BottomNavigationBar
-            android:layout_gravity="bottom"
-            android:id="@+id/bottom_navigation_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
+
+
 </FrameLayout>
-<!--
-</LinearLayout>-->

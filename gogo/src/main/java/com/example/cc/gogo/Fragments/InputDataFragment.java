@@ -2,38 +2,29 @@ package com.example.cc.gogo.Fragments;
 
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cc.gogo.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RunFragment extends Fragment {
+public class InputDataFragment extends Fragment {
 
 
-    public RunFragment() {
+    public InputDataFragment() {
         // Required empty public constructor
     }
 
-    public static RunFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        RunFragment fragment = new RunFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_run, container, false);
+        return inflater.inflate(R.layout.fragment_input_data, container, false);
     }
 
 }

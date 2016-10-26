@@ -90,6 +90,7 @@ public class StepFragment extends Fragment {
                 lblPage.setText(Integer.toString(page));
         }
     }
+
     private static class EmptyPagerAdapter extends FragmentPagerAdapter {
 
         public EmptyPagerAdapter(FragmentManager fm) {
@@ -106,4 +107,4 @@ public class StepFragment extends Fragment {
             return StepFragment.PageFragment.newInstance(position + 1, position == getCount() - 1);
         }
     }
-    }
+}

@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import android.support.annotation.*;
 import android.util.Log;
 
-import com.example.cc.gogo.*;
 import com.example.cc.gogo.Fragments.CollectionFragment;
 import com.example.cc.gogo.Fragments.RunFragment;
+import com.example.cc.gogo.Fragments.SettingFragment;
 import com.example.cc.gogo.R;
 import com.roughike.bottombar.*;
 
@@ -45,15 +45,21 @@ public class MainActivity extends AppCompatActivity {
                         Log.i("info", "click");
                         CollectionFragment cf = new CollectionFragment();
                         //fragmentTransaction.replace(R.id.contentContainer,cf);
-                        fragmentTransaction.addToBackStack("");
+                        fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
                         break;
                     case R.id.run:
-                        Log.i("info", "click");
                         RunFragment rf = new RunFragment();
                         fragmentTransaction.replace(R.id.contentContainer, rf);
-                        fragmentTransaction.addToBackStack("");
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
+                        fragmentTransaction.commit();
+                        break;
+                    case R.id.setting:
+                        SettingFragment sf = new SettingFragment();
+                        fragmentTransaction.replace(R.id.contentContainer,sf);
+                        fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
                         break;

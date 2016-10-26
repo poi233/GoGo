@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
 
 import com.example.cc.gogo.Fragments.CollectionFragment;
+import com.example.cc.gogo.Fragments.SettingFragment;
 import com.example.cc.gogo.R;
 import com.example.cc.gogo.Fragments.StepFragment;
 
@@ -51,7 +52,7 @@ public class Main2Activity extends AppCompatActivity {
 
     @OnClick(R.id.setting)
     public void onClickNavigation5() {
-        transaction(CollectionFragment.newInstance());
+        //transaction(SettingFragment.newInstance());
     }
 
     private void transaction(Fragment fragment) {

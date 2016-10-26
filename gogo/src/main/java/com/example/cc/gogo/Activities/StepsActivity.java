@@ -1,19 +1,22 @@
 package com.example.cc.gogo.Activities;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.app.FragmentPagerAdapter;
-        import android.support.v4.view.ViewPager;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.TextView;
-        import android.view.MenuItem;
 
-        import com.badoualy.stepperindicator.StepperIndicator;
-        import com.example.cc.gogo.R;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.view.MenuItem;
+
+import com.badoualy.stepperindicator.StepperIndicator;
+import com.example.cc.gogo.Fragments.InputDataFragment;
+import com.example.cc.gogo.R;
 
 public class StepsActivity extends AppCompatActivity {
 
@@ -65,10 +68,19 @@ public class StepsActivity extends AppCompatActivity {
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
             final int page = getArguments().getInt("page", 0);
-            if (getArguments().containsKey("isLast"))
+            if (getArguments().containsKey("isLast")) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                InputDataFragment ipf = new InputDataFragment();
+                fragmentTransaction.replace(R.id.view_pager,ipf);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
+                fragmentTransaction.commit();
                 lblPage.setText("You're done!");
-            else
+            }
+            else {
                 lblPage.setText(Integer.toString(page));
+            }
         }
     }
 
