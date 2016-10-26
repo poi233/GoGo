@@ -1,4 +1,4 @@
-package com.example.cc.gogo;
+package com.example.cc.gogo.Fragments;
 
 
 import android.os.Bundle;
@@ -7,12 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import com.example.cc.gogo.R;
 
 public class CollectionFragment extends android.support.v4.app.Fragment {
 
@@ -20,6 +15,7 @@ public class CollectionFragment extends android.support.v4.app.Fragment {
     public CollectionFragment() {
         // Required empty public constructor
     }
+
     public static CollectionFragment newInstance() {
 
         Bundle args = new Bundle();

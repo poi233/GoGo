@@ -1,6 +1,7 @@
-package com.example.cc.gogo;
+package com.example.cc.gogo.Activities;
 
 import com.dd.CircularProgressButton;
+import com.example.cc.gogo.R;
 
 import android.app.ActionBar;
 import android.app.Activity;

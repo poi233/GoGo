@@ -1,4 +1,4 @@
-package com.example.cc.gogo;
+package com.example.cc.gogo.Activities;
         import android.os.Bundle;
         import android.support.annotation.Nullable;
         import android.support.v4.app.Fragment;
@@ -10,8 +10,10 @@ package com.example.cc.gogo;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.TextView;
+        import android.view.MenuItem;
 
         import com.badoualy.stepperindicator.StepperIndicator;
+        import com.example.cc.gogo.R;
 
 public class StepsActivity extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class StepsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.steps);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final ViewPager pager = (ViewPager) findViewById(R.id.pager);
         assert pager != null;
         pager.setAdapter(new EmptyPagerAdapter(getSupportFragmentManager()));
@@ -67,6 +70,19 @@ public class StepsActivity extends AppCompatActivity {
             else
                 lblPage.setText(Integer.toString(page));
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                StepsActivity.this.finish();
+                break;
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private static class EmptyPagerAdapter extends FragmentPagerAdapter {

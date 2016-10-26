@@ -1,4 +1,4 @@
-package com.example.cc.gogo.slides;
+package com.example.cc.gogo.Slides;
 import com.example.cc.gogo.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

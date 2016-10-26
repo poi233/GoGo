@@ -1,4 +1,4 @@
-package com.example.cc.gogo.slides.policyDemo;
+package com.example.cc.gogo.Slides.policyDemo;
 
 import android.graphics.Color;
 import com.example.cc.gogo.R;

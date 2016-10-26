@@ -1,4 +1,4 @@
-package com.example.cc.gogo;
+package com.example.cc.gogo.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.cc.gogo.slides.SampleSlide;
+import com.example.cc.gogo.R;
+import com.example.cc.gogo.Slides.SampleSlide;
 import com.github.paolorotolo.appintro.AppIntro;
 
 public class IntroActivity extends AppIntro {
@@ -20,7 +21,7 @@ public class IntroActivity extends AppIntro {
         addSlide(SampleSlide.newInstance(R.layout.intro3));
         addSlide(SampleSlide.newInstance(R.layout.intro4));
         setZoomAnimation();
-    //    addSlide(new InputDemoSlide());
+        //addSlide(new InputDemoSlide());
 /*
         // OPTIONAL METHODS
         // Override bar/separator color.

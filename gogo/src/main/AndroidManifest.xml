@@ -8,16 +8,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IntroActivity" > </activity>
-        <activity android:name=".MainActivity"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter> </activity>
-        <activity android:name=".MusicActivity" />
-        <activity android:name=".Sample1Activity">
-
+        <activity android:name=".Activities.Sample1Activity"></activity>
+        <activity android:name=".Activities.StepsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainActivity" />
         </activity>
+        <activity android:name=".Activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.MusicActivity" />
+        <activity android:name=".Activities.Main2Activity"></activity>
     </application>
 
 </manifest>

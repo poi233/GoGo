@@ -1,4 +1,4 @@
-package com.example.cc.gogo;
+package com.example.cc.gogo.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.cc.gogo.R;
 
 import co.mobiwise.library.InteractivePlayerView;
 import co.mobiwise.library.OnActionClickedListener;

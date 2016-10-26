@@ -1,5 +1,5 @@
 package com.example.cc.gogo;
-import com.example.cc.gogo.slides.FirstSlide;
+import com.example.cc.gogo.Slides.FirstSlide;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.cc.gogo.slides.InputDemoSlide;
+import com.example.cc.gogo.Slides.InputDemoSlide;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 

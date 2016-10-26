@@ -1,10 +1,13 @@
-package com.example.cc.gogo;
+package com.example.cc.gogo.Activities;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
+
+import com.example.cc.gogo.Fragments.CollectionFragment;
+import com.example.cc.gogo.R;
+import com.example.cc.gogo.Fragments.StepFragment;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
