@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/home"
+        icon="@drawable/home"
+        title="Home"
+        barColorWhenSelected="@color/colorAccent" />
+    <tab
+        id="@+id/sport"
+        icon="@drawable/sport"
+        title="Advice"
+        barColorWhenSelected="#5D4037" />
+    <tab
+        id="@+id/run"
+        icon="@drawable/watch"
+        title="Run"
+        barColorWhenSelected="#7B1FA2" />
+    <tab
+    id="@+id/music"
+    icon="@drawable/music"
+    title="Music"
+    barColorWhenSelected="#FF5252" />
+    <tab
+    id="@+id/setting"
+    icon="@drawable/config"
+    title="Setting"
+    barColorWhenSelected="#FF9800" />
+
+
+</tabs>
