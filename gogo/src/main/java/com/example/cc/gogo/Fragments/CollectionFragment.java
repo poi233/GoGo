@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
+import com.example.cc.gogo.Fragments.base.BaseFragment;
 import com.example.cc.gogo.R;
 
-public class CollectionFragment extends android.support.v4.app.Fragment {
+public class CollectionFragment extends BaseFragment {
 
 
     public CollectionFragment() {
@@ -32,4 +32,23 @@ public class CollectionFragment extends android.support.v4.app.Fragment {
         return inflater.inflate(R.layout.fragment_collect_data, container, false);
     }
 
+    @Override
+    protected void findView() {
+
+    }
+
+    @Override
+    protected void setOnClickListener() {
+
+    }
+
+    @Override
+    protected void setOnItemSelectListener() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

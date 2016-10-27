@@ -1,4 +1,4 @@
-package com.example.cc.gogo.util;
+package com.example.cc.gogo.UI;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

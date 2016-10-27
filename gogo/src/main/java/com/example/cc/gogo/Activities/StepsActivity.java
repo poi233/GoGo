@@ -69,13 +69,6 @@ public class StepsActivity extends AppCompatActivity {
             super.onActivityCreated(savedInstanceState);
             final int page = getArguments().getInt("page", 0);
             if (getArguments().containsKey("isLast")) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                InputDataFragment ipf = new InputDataFragment();
-                fragmentTransaction.replace(R.id.view_pager,ipf);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
-                fragmentTransaction.commit();
                 lblPage.setText("You're done!");
             }
             else {
@@ -90,7 +83,6 @@ public class StepsActivity extends AppCompatActivity {
             case android.R.id.home:
                 StepsActivity.this.finish();
                 break;
-
             default:
                 break;
         }
@@ -105,11 +97,15 @@ public class StepsActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 6;
+            return 5;
         }
 
         @Override
         public Fragment getItem(int position) {
+            if (position==0)
+            {
+                return new InputDataFragment();
+            }
             return PageFragment.newInstance(position + 1, position == getCount() - 1);
         }
 

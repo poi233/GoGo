@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.cc.gogo.Activities.CollectionMenuActivity;
 import com.example.cc.gogo.Activities.StepsActivity;
 import com.example.cc.gogo.R;
 
@@ -53,7 +54,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.collect:
-                startActivity(new Intent(getActivity(), StepsActivity.class));
+                startActivity(new Intent(getActivity(), CollectionMenuActivity.class));
                 break;
             default:
                 break;

@@ -18,7 +18,7 @@ import com.example.cc.gogo.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StepFragment extends Fragment {
+public class StepFragment extends Fragment{
 
 
     public StepFragment() {

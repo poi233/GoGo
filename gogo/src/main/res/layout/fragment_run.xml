@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cc.gogo.Fragments.RunFragment">
 
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:scrollbars="vertical" >
-
+    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,7 +44,7 @@
 
 
         <TextView
-
+            android:id="@+id/tv_walk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -79,7 +78,7 @@
 
 
         <TextView
-            android:id="@+id/tv_steps"
+            android:id="@+id/tv_run"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -103,7 +102,7 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/bt_reset"
+                android:id="@+id/btn_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -112,7 +111,7 @@
                 android:textColor="@drawable/step_btn_color" />
 
             <Chronometer
-                android:id="@+id/cm_passtime"
+                android:id="@+id/cm_pass_time"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
@@ -122,7 +121,7 @@
                 android:textSize="25sp" />
 
             <Button
-                android:id="@+id/bt_control"
+                android:id="@+id/btn_start"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -138,26 +137,25 @@
             android:layout_marginTop="10dp"
             android:background="@android:color/darker_gray" />
 
-       <!-- <include layout="@layout/step_msg" />
--->
-     <!--   <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"
-            android:background="#d0d0d0" />
+        <!-- <include layout="@layout/step_msg" />
+ -->
+        <!--   <TextView
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginLeft="15dp"
+               android:layout_marginRight="15dp"
+               android:layout_marginTop="10dp"
+               android:background="#d0d0d0" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />-->
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginTop="10dp"
+               android:background="@android:color/darker_gray" />-->
 
 
     </LinearLayout>
 
-
-</ScrollView>
+</FrameLayout>

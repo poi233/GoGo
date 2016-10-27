@@ -14,9 +14,6 @@ import com.example.cc.gogo.R;
 import co.mobiwise.library.InteractivePlayerView;
 import co.mobiwise.library.OnActionClickedListener;
 
-/**
- * Created by mertsimsek on 14/08/15.
- */
 public class MusicActivity extends Activity implements OnActionClickedListener{
 
     @Override

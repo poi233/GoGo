@@ -30,7 +30,7 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.home)
+/*    @OnClick(R.id.home)
     public void onClickNavigation1() {
         transaction(CollectionFragment.newInstance());
     }
@@ -53,7 +53,7 @@ public class Main2Activity extends AppCompatActivity {
     @OnClick(R.id.setting)
     public void onClickNavigation5() {
         //transaction(SettingFragment.newInstance());
-    }
+    }*/
 
     private void transaction(Fragment fragment) {
         getSupportFragmentManager()

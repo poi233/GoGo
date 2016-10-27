@@ -120,4 +120,5 @@
     <string name="StateChangeSample">State Change Sample</string>
     <string name="ProgressPaddingSample">Progress Padding Sample</string>
     <string name="CustomSelectorSample">Custom Selector Sample</string>
+    <string name="title_activity_collection_menu">CollectionMenuActivity</string>
 </resources>

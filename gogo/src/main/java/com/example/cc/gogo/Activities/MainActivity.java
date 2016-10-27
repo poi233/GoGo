@@ -1,40 +1,63 @@
 package com.example.cc.gogo.Activities;
 
 import android.app.FragmentTransaction;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import android.support.annotation.*;
-import android.util.Log;
 
-import com.example.cc.gogo.Fragments.CollectionFragment;
-import com.example.cc.gogo.Fragments.RunFragment;
-import com.example.cc.gogo.Fragments.SettingFragment;
+import com.example.cc.gogo.Fragments.*;
 import com.example.cc.gogo.R;
 import com.roughike.bottombar.*;
 
+
+import libsvm.svm;
+
+import com.example.cc.gogo.svm.*;
+
+import static java.io.File.separator;
+import static com.example.cc.gogo.svm.SVM.inputStreamToArray;
+import static com.example.cc.gogo.util.Constant.dir;
+import static com.example.cc.gogo.util.Constant.modelFileName;
+import static com.example.cc.gogo.util.Constant.rangeFileName;
+import static com.example.cc.gogo.util.Constant.train;
+import static com.example.cc.gogo.util.Constant.trainFileName;
+import static com.example.cc.gogo.util.PermissionUtil.requestWriteFilePermission;
+
+
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<Fragment> fragments;
+    BottomBar bottomBar;
+    SVM mSvm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.cc.gogo.R.layout.main_activity);
+        init();
         //initial fragment show
-        FragmentManager fragmentManager = getFragmentManager();
+        /*FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         CollectionFragment cf = new CollectionFragment();
         //fragmentTransaction.replace(R.id.contentContainer,cf);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
         //bottom show
-        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
@@ -42,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 switch (tabId) {
                     case R.id.home:
-                        Log.i("info", "click");
                         CollectionFragment cf = new CollectionFragment();
                         //fragmentTransaction.replace(R.id.contentContainer,cf);
                         fragmentTransaction.addToBackStack(null);
@@ -58,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.setting:
                         SettingFragment sf = new SettingFragment();
-                        fragmentTransaction.replace(R.id.contentContainer,sf);
+                        fragmentTransaction.replace(R.id.contentContainer, sf);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
@@ -68,5 +90,97 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    /**
+     * 初始化操作
+     */
+    private void init() {
+        crateDataDir();
+        copyFileToSd();
+        loadModelAndRange();
+    }
+
+    /**
+     * copy model 和 range文件到sd卡
+     */
+    private void copyFileToSd() {
+        try {
+            copyFileToSd(getAssets().open("model"), dir + separator + modelFileName);
+            copyFileToSd(getAssets().open("range"), dir + separator + rangeFileName);
+            copyFileToSd(getAssets().open("train"), dir + separator + trainFileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * copy文件到sd卡
+     */
+    private void copyFileToSd(InputStream in, String targetFilePath) {
+        FileOutputStream fileOutputStream = null;
+        File file = new File(targetFilePath);
+        if (file.exists()) {        // 如果文件已经存在就结束
+            return;
+        }
+        try {
+            fileOutputStream = new FileOutputStream(targetFilePath);
+            int len = 0;
+            byte[] b = new byte[1024];
+            while ((len = in.read(b)) != -1) {
+                fileOutputStream.write(b, 0, len);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fileOutputStream != null)
+                    fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 创建数据目录
+     */
+    private void crateDataDir() {
+        File file = new File(dir);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        File trainFile = new File(dir + separator + train);
+        if (!trainFile.exists()) {
+            trainFile.mkdirs();
+        }
+    }
+
+    /**
+     * 加载model和range
+     */
+    private void loadModelAndRange() {
+        try {
+            mSvm = new SVM(svm.svm_load_model(
+                    new BufferedReader(new InputStreamReader(new FileInputStream(dir + separator + modelFileName)))),
+                    inputStreamToArray(new FileInputStream(dir + separator + rangeFileName)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean predictUnscaledTrain(String[] unScaleData) {
+        return mSvm.predictUnscaledTrain(unScaleData);
+    }
+
+    public double predictUnscaled(String[] unScaleData) {
+        return mSvm.predictUnscaled(unScaleData, false);
     }
 }
