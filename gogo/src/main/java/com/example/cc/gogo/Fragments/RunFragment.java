@@ -2,6 +2,8 @@ package com.example.cc.gogo.Fragments;
 
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -141,7 +143,15 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                     String strPosition = wzMapFromCode.get(position);
                     System.out.println("--------" + code + ":" + act + ":" + position);
                     if (strAct.equals("Walking")) {
-                        tv_walk.setTextColor(230);
+                        tv_walk.setTextColor(Color.parseColor("#ffff4444"));
+                        tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
+                    } else if (strAct.equals("Running"))
+                    {
+                        tv_run.setTextColor(Color.parseColor("#ffff4444"));
+                        tv_walk.setTextColor(Color.parseColor("#ff33b5e5"));
+                    } else {
+                        tv_walk.setTextColor(Color.parseColor("#ff33b5e5"));
+                        tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
                     }
                     //mTvResult.setText("预测:action" + strAct + "------postion:" + strPosition);
                     currentIndex = 0;
