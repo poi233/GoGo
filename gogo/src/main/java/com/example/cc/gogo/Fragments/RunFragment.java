@@ -152,7 +152,13 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_run, container, false);
         findView();
         setOnClickListener();
-        int temp = 0;
+        init();
+        mThread();
+        return view;
+    }
+
+    public void mThread()
+    {
         if (thread == null) {
             thread = new Thread() {// 子线程用于监听当前步数的变化
 
@@ -185,7 +191,6 @@ public class RunFragment extends Fragment implements View.OnClickListener {
             };
             thread.start();
         }
-        return view;
     }
 
     @Override
@@ -218,12 +223,16 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                 //loadModelAndRange();
                 startTimer = System.currentTimeMillis();
                 tempTime = timer;
-                Log.i("time", String.valueOf(startTimer) + " " + getFormatTime(tempTime) + " " + getFormatTime(timer));
+                //Log.i("time", String.valueOf(startTimer) + " " + getFormatTime(tempTime) + " " + getFormatTime(timer));
                 break;
             case R.id.btn_reset:
                 getActivity().stopService(service);
                 StepDetector.CURRENT_SETP = 0;
+                StepDetector.WALK_STEP = 0;
+                StepDetector.RUN_SETP = 0;
+                StepDetector.MOTIVATION_STATUS = 0;
                 tempTime = timer = 0;
+                init();
                     /*btn_stop.setText(getString(R.string.pause));
                     btn_stop.setEnabled(false);
 
@@ -342,9 +351,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         tv_distance.setText(formatDouble(0.0));
         tv_calories.setText(formatDouble(0.0));
         tv_velocity.setText(formatDouble(0.0));*/
-
         handler.removeCallbacks(thread);
-
     }
 
 
@@ -352,14 +359,19 @@ public class RunFragment extends Fragment implements View.OnClickListener {
      * 初始化界面
      */
     private void init() {
+        if(SettingsActivity.sharedPreferences != null){
         step_length = SettingsActivity.sharedPreferences.getInt(
                 SettingsActivity.STEP_LENGTH_VALUE, 70);
         weight = SettingsActivity.sharedPreferences.getInt(
                 SettingsActivity.WEIGHT_VALUE, 50);
+        } else {
+            step_length = 70;
+            weight = 50;
+        }
 
         countDistance();
         countStep();
-        Log.i("time", getFormatTime(timer) + " " + getFormatTime(tempTime));
+        //Log.i("time", getFormatTime(timer) + " " + getFormatTime(tempTime));
         if ((timer += tempTime) != 0 && distance != 0.0) {  //tempTime记录运动的总时间，timer记录每次运动时间
 
             // 体重、距离

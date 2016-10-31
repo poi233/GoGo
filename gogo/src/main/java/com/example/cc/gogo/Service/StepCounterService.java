@@ -49,7 +49,7 @@ public class StepCounterService extends Service {
 		// 注册传感器，注册监听器
 		mSensorManager.registerListener(detector,
 				mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_NORMAL);
+				SensorManager.SENSOR_DELAY_FASTEST);
 
 		/*mSensorManager.registerListener(detector,
 				SensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),

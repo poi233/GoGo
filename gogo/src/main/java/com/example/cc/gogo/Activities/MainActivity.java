@@ -2,6 +2,7 @@ package com.example.cc.gogo.Activities;
 
 import android.app.FragmentTransaction;
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -54,15 +55,15 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new CollectionFragment());
         fragmentList.add(new RunFragment());
         fragmentList.add(new SettingFragment());
-        //initial fragment show
-        /*FragmentManager fragmentManager = getFragmentManager();
+        /*//initial fragment show
+        *//*FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         CollectionFragment cf = new CollectionFragment();
         //fragmentTransaction.replace(R.id.contentContainer,cf);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
-        fragmentTransaction.commit();*/
-        //bottom show
+        fragmentTransaction.commit();*//*
+        //bottom show*/
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (tabId) {
                     case R.id.home:
                         //CollectionFragment cf = new CollectionFragment();
-                        fragmentTransaction.replace(R.id.contentContainer,fragmentList.get(0));
+                        fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(0));
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();

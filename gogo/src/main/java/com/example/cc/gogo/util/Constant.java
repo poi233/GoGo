@@ -14,7 +14,7 @@ public class Constant {
     public static String rangeFileName = "range";
     public static String trainFileName = "train";
     public static final String SEPERATOR_SPACE = " ";       // 特征分隔符
-    public static final String SEPERATOR_COLON = ":";       // lable分隔符
+    public static final String SEPERATOR_COLON = ":";       // label分隔符
     public static final String train = "traindata";
     public static final String scaleFileName = "scale";
     public static final String resultFileName = "result";
