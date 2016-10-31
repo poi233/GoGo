@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/tab_fragment_step_tv_step"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="#ff33b5e5"
             android:textSize="50sp" />
 
 
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/tab_fragment_step_tv_step"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="#ff33b5e5"
             android:textSize="50sp" />
 
         <TextView
@@ -110,14 +110,14 @@
                 android:text="@string/tab_fragment_step_bt_reset"
                 android:textColor="@drawable/step_btn_color" />
 
-            <Chronometer
+            <TextView
                 android:id="@+id/cm_pass_time"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
-                android:format="00:00:00"
                 android:gravity="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:text="00:00:00"
+                android:textColor="#ff33b5e5"
                 android:textSize="25sp" />
 
             <Button

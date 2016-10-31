@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.support.annotation.*;
 
@@ -47,7 +48,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.cc.gogo.R.layout.main_activity);
+        requestWriteFilePermission(this);
         init();
+        final List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new CollectionFragment());
+        fragmentList.add(new RunFragment());
+        fragmentList.add(new SettingFragment());
         //initial fragment show
         /*FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -65,22 +71,22 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 switch (tabId) {
                     case R.id.home:
-                        CollectionFragment cf = new CollectionFragment();
-                        //fragmentTransaction.replace(R.id.contentContainer,cf);
+                        //CollectionFragment cf = new CollectionFragment();
+                        fragmentTransaction.replace(R.id.contentContainer,fragmentList.get(0));
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
                         break;
                     case R.id.run:
-                        RunFragment rf = new RunFragment();
-                        fragmentTransaction.replace(R.id.contentContainer, rf);
+                        //RunFragment rf = new RunFragment();
+                        fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(1));
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
                         break;
                     case R.id.setting:
-                        SettingFragment sf = new SettingFragment();
-                        fragmentTransaction.replace(R.id.contentContainer, sf);
+                        //SettingFragment sf = new SettingFragment();
+                        fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(2));
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
@@ -129,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         try {
+            file.createNewFile();
             fileOutputStream = new FileOutputStream(targetFilePath);
             int len = 0;
             byte[] b = new byte[1024];

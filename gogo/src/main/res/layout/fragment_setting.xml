@@ -5,10 +5,21 @@
     tools:context="com.example.cc.gogo.Fragments.SettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <Button
         android:text="采集数据"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/collect" />
+
+    <Button
+        android:text="修改参数"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/setting" />
+    </LinearLayout>
 
 </FrameLayout>
