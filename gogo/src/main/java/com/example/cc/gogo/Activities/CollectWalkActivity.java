@@ -1,6 +1,7 @@
 package com.example.cc.gogo.Activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,6 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect_walk);//获取界面组件
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_collect_walk);
         createTrainFile();
         getView();
         setOnClickListener();
@@ -79,6 +79,7 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
     }
     @Override
     public void onClick(View v) {
+        final Intent intent=new Intent(CollectWalkActivity.this,LoadingActivity.class);
         switch (v.getId()) {
                    case R.id.hand:
                        AlertDialog.Builder builder0 = new AlertDialog.Builder(CollectWalkActivity.this);
@@ -86,6 +87,12 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
                            @Override
                            public void onClick(DialogInterface dialog, int which) {
                                //确定按钮的点击事件
+                               Bundle bundle=new Bundle();
+                               bundle.putString("step","hand");
+                               bundle.putString("state",CollectWalkActivity.this.getIntent().getStringExtra("state"));
+                               intent.putExtras(bundle);
+                               startActivity(intent);
+
                            }
                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                            @Override
@@ -100,6 +107,11 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
                            @Override
                            public void onClick(DialogInterface dialog, int which) {
                                //确定按钮的点击事件
+                               Bundle bundle=new Bundle();
+                               bundle.putString("step","pocket");
+                               bundle.putString("state",CollectWalkActivity.this.getIntent().getStringExtra("state"));
+                               intent.putExtras(bundle);
+                               startActivity(intent);
                            }
                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                            @Override
@@ -114,6 +126,11 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
                            @Override
                            public void onClick(DialogInterface dialog, int which) {
                                //确定按钮的点击事件
+                               Bundle bundle=new Bundle();
+                               bundle.putString("step","arm");
+                               bundle.putString("state",CollectWalkActivity.this.getIntent().getStringExtra("state"));
+                               intent.putExtras(bundle);
+                               startActivity(intent);
                            }
                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                            @Override

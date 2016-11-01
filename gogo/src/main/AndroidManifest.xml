@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.SettingsActivity"></activity>
+        <activity android:name=".Activities.SettingsActivity" />
         <activity android:name=".Activities.Sample1Activity" />
         <activity android:name=".Activities.StepsActivity">
             <meta-data
@@ -27,14 +27,18 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activities.MusicActivity" />
         <activity android:name=".Activities.Main2Activity" />
         <activity android:name=".Activities.CollectionMenuActivity" />
-        <activity android:name=".Activities.CollectWalkActivity"></activity>
-        <service android:name=".Service.StepCounterService"></service>
+        <activity android:name=".Activities.CollectWalkActivity" />
+
+        <service android:name=".Service.StepCounterService" />
+
+        <activity android:name=".Activities.LoadingActivity" />
     </application>
 
 </manifest>

@@ -55,14 +55,23 @@ public class CollectionMenuActivity extends AppCompatActivity implements OnClick
 
     @Override
     public void onClick(View v) {
+        Bundle bundle = new Bundle();
+        Intent intent=new Intent(this, CollectWalkActivity.class);
         switch (v.getId()) {
             case R.id.walk:
-                startActivity(new Intent(this, CollectWalkActivity.class));
+
+                bundle.putString("state", "walk");
+                intent.putExtras(bundle);
+                startActivity(intent);
                 break;
             case R.id.run:
+                bundle.putString("state", "run");
+                intent.putExtras(bundle);
+                startActivity(intent);
                 break;
             case R.id.still:
                 break;
+            default:break;
         }
     }
 }
