@@ -180,7 +180,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                                 temp = StepDetector.CURRENT_SETP;
                             }
                             if (startTimer != System.currentTimeMillis()) {
-                                timer = tempTime + System.currentTimeMillis()
+                                timer = System.currentTimeMillis()
                                         - startTimer;
                             }
                             //Log.i("time", "startTimer=" + getFormatTime(startTimer) + " timer=" + getFormatTime(timer) + " tempTimer=" + getFormatTime(tempTime));
@@ -222,7 +222,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                 getActivity().startService(service);
                 //loadModelAndRange();
                 startTimer = System.currentTimeMillis();
-                tempTime = timer;
+                //tempTime = timer;
                 //Log.i("time", String.valueOf(startTimer) + " " + getFormatTime(tempTime) + " " + getFormatTime(timer));
                 break;
             case R.id.btn_reset:
@@ -231,7 +231,10 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                 StepDetector.WALK_STEP = 0;
                 StepDetector.RUN_SETP = 0;
                 StepDetector.MOTIVATION_STATUS = 0;
-                tempTime = timer = 0;
+                tv_walk.setTextColor(Color.parseColor("#ff33b5e5"));
+                tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
+                //tempTime =
+                timer = 0;
                 init();
                     /*btn_stop.setText(getString(R.string.pause));
                     btn_stop.setEnabled(false);
@@ -331,6 +334,10 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         // TODO Auto-generated method stub
         super.onResume();
         Log.i("APP", "on resuame.");
+        tv_run.setText(run_step+"");
+        tv_walk.setText(walk_step+"");
+        //timer = System.currentTimeMillis()-startTimer;
+        //cm_pass_time.setText(getFormatTime(timer));
         // 获取界面控件
         /*addView();*/
         /*// 初始化控件*/
@@ -372,7 +379,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         countDistance();
         countStep();
         //Log.i("time", getFormatTime(timer) + " " + getFormatTime(tempTime));
-        if ((timer += tempTime) != 0 && distance != 0.0) {  //tempTime记录运动的总时间，timer记录每次运动时间
+        if ((timer) != 0 && distance != 0.0) {  //tempTime记录运动的总时间，timer记录每次运动时间
 
             // 体重、距离
             // 跑步热量（kcal）＝体重（kg）×距离（公里）×1.036，换算一下
@@ -383,7 +390,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
             calories = 0.0;
             velocity = 0.0;
         }
-        cm_pass_time.setText(getFormatTime(timer + tempTime));
+        cm_pass_time.setText(getFormatTime(timer));
         tv_run.setText(0 + "");
         tv_walk.setText(0 + "");
         /*
