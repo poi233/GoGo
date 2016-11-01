@@ -8,17 +8,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-    <Button
-        android:text="采集数据"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/collect" />
+        android:orientation="vertical" >
+        <Button
+            android:text="数据采集"
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="80dp"
+            android:background="@drawable/step_btn_background"
+            android:textColor="@drawable/step_btn_color"
+            android:id="@+id/collect"/>"
 
     <Button
         android:text="修改参数"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="80dp"
+        android:background="@drawable/step_btn_background"
+        android:textColor="@drawable/step_btn_color"
         android:id="@+id/setting" />
     </LinearLayout>
 

@@ -11,69 +11,48 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.cc.gogo.Activities.CollectWalkActivity">
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/step_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="2"
         android:orientation="vertical">
         <RadioButton
-            android:id="@+id/step_normal"
+            android:id="@+id/hand"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:checked="true"
             android:gravity="center"
-            android:text="手持模式"
+            android:text="手持模式(可选)"
             android:textColor="@drawable/step_mode_btn"
             android:textSize="25sp"
             android:textStyle="normal|bold" />
         <RadioButton
-            android:id="@+id/step_pocket"
+            android:id="@+id/pocket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="@string/step_mode_step_pocket"
+            android:text="口袋模式(可选)"
             android:textColor="@drawable/step_mode_btn"
             android:textSize="25sp"
             android:textStyle="normal|bold" />
         <RadioButton
+            android:id="@+id/arm"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="手臂模式"
+            android:text="手臂模式(可选)"
             android:textColor="@drawable/step_mode_btn"
             android:textSize="25sp"
             android:textStyle="normal|bold" />
-        <Button
-            android:id="@+id/button"
-            android:layout_width="123dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:background="@drawable/step_btn_background"
-            android:text="采集"
-            android:textAlignment="center"
-            android:textColor="@drawable/step_btn_color" />
-        <com.dd.CircularProgressButton
-            android:id="@+id/circularButton1"
-            android:layout_width="196dp"
-            android:layout_height="64dp"
-            android:textColor="@color/cpb_white"
-            android:textSize="18sp"
-            app:cpb_cornerRadius="48dp"
-            app:cpb_iconComplete="@drawable/ic_action_accept"
-            app:cpb_iconError="@drawable/ic_action_cancel"
-            app:cpb_textIdle="@string/Upload" />
-
-    </LinearLayout>
-
+        </RadioGroup>
 
 </RelativeLayout>
