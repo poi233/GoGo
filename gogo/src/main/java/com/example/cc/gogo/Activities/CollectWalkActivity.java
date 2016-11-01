@@ -2,6 +2,7 @@ package com.example.cc.gogo.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,10 +15,13 @@ import android.widget.RadioGroup;
 
 import com.dd.CircularProgressButton;
 import com.example.cc.gogo.R;
+import com.example.cc.gogo.Service.StepCounterService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import static com.example.cc.gogo.util.Constant.dir;
 import android.app.AlertDialog;
@@ -26,13 +30,13 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
     FileOutputStream outputStream;
     RadioGroup step_group;
     RadioButton hand,pocket,arm;//获取被选取的RadioButton
+    public static SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect_walk);//获取界面组件
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        createTrainFile();
         getView();
         setOnClickListener();
     }
@@ -61,22 +65,6 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
         return super.onOptionsItemSelected(item);
     }
 
-    private void createTrainFile() {
-        try {
-            String fileName = "train";
-            fileName += ".txt";
-            Log.i("info", "文件");
-            File file = new File(dir + File.separator, fileName);
-            if (file.exists()) {
-                Log.i("info", "文件已存在");
-                return;
-            }
-            Log.i("info", dir + File.separator + fileName);
-            outputStream = new FileOutputStream(dir + File.separator + fileName, true);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
     @Override
     public void onClick(View v) {
         final Intent intent=new Intent(CollectWalkActivity.this,LoadingActivity.class);
@@ -88,7 +76,7 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
                            public void onClick(DialogInterface dialog, int which) {
                                //确定按钮的点击事件
                                Bundle bundle=new Bundle();
-                               bundle.putString("step","hand");
+                               bundle.putString("step","Hand Fixed");
                                bundle.putString("state",CollectWalkActivity.this.getIntent().getStringExtra("state"));
                                intent.putExtras(bundle);
                                startActivity(intent);
@@ -108,7 +96,7 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
                            public void onClick(DialogInterface dialog, int which) {
                                //确定按钮的点击事件
                                Bundle bundle=new Bundle();
-                               bundle.putString("step","pocket");
+                               bundle.putString("step","Pant Pocket");
                                bundle.putString("state",CollectWalkActivity.this.getIntent().getStringExtra("state"));
                                intent.putExtras(bundle);
                                startActivity(intent);
@@ -127,7 +115,7 @@ public class CollectWalkActivity extends AppCompatActivity implements View.OnCli
                            public void onClick(DialogInterface dialog, int which) {
                                //确定按钮的点击事件
                                Bundle bundle=new Bundle();
-                               bundle.putString("step","arm");
+                               bundle.putString("step","Hand Swing");
                                bundle.putString("state",CollectWalkActivity.this.getIntent().getStringExtra("state"));
                                intent.putExtras(bundle);
                                startActivity(intent);

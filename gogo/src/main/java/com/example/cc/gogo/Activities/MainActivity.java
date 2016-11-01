@@ -31,11 +31,13 @@ import libsvm.svm;
 
 import com.example.cc.gogo.svm.*;
 
+import static com.example.cc.gogo.util.Constant.modelFileBackupName;
 import static java.io.File.separator;
 import static com.example.cc.gogo.svm.SVM.inputStreamToArray;
 import static com.example.cc.gogo.util.Constant.dir;
 import static com.example.cc.gogo.util.Constant.modelFileName;
 import static com.example.cc.gogo.util.Constant.rangeFileName;
+import static com.example.cc.gogo.util.Constant.trainStillFileName;
 import static com.example.cc.gogo.util.Constant.train;
 import static com.example.cc.gogo.util.Constant.trainFileName;
 import static com.example.cc.gogo.util.PermissionUtil.requestWriteFilePermission;
@@ -121,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
             copyFileToSd(getAssets().open("model"), dir + separator + modelFileName);
             copyFileToSd(getAssets().open("range"), dir + separator + rangeFileName);
             copyFileToSd(getAssets().open("train"), dir + separator + trainFileName);
+            copyFileToSd(getAssets().open("train_still"), dir + separator + trainStillFileName);
+            copyFileToSd(getAssets().open("model_backup"), dir + separator + modelFileBackupName);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -170,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
             trainFile.mkdirs();
         }
     }
+
+
 
     /**
      * 加载model和range

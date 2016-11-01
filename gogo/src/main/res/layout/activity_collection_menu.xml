@@ -36,13 +36,24 @@
             android:textColor="@drawable/step_btn_color" />
 
         <Button
-            android:id="@+id/still"
+            android:id="@+id/train"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="40dp"
             android:layout_weight="1"
             android:background="@drawable/step_btn_background"
-            android:text="静止数据收集"
+            android:text="分析数据"
+            android:textColor="@drawable/step_btn_color" />
+
+        <Button
+            android:id="@+id/recover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/step_btn_background"
+            android:text="恢复默认"
             android:textColor="@drawable/step_btn_color" />
 
     </LinearLayout>

@@ -9,10 +9,12 @@ import static java.io.File.separator;
 
 public class Constant {
 
-    public static String dir = Environment.getExternalStorageDirectory() + separator + "GoGo";
+    public static String dir = Environment.getExternalStorageDirectory() + separator + "ML";
     public static String modelFileName = "model";
     public static String rangeFileName = "range";
     public static String trainFileName = "train";
+    public static String modelFileBackupName = "model_backup";
+    public static String trainStillFileName = "train_still";
     public static final String SEPERATOR_SPACE = " ";       // 特征分隔符
     public static final String SEPERATOR_COLON = ":";       // label分隔符
     public static final String train = "traindata";
