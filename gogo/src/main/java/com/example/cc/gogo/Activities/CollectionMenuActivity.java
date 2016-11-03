@@ -45,7 +45,6 @@ import static java.io.File.separator;
 public class CollectionMenuActivity extends AppCompatActivity implements OnClickListener {
     Button walk, run, recover, train;
     public static SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +63,16 @@ public class CollectionMenuActivity extends AppCompatActivity implements OnClick
         sharedPreferences = getSharedPreferences("CollectStatus", MODE_PRIVATE);
         //}
         String runStatus = sharedPreferences.getString("Running", "");
-        Log.i("status", runStatus);
+        //Log.i("status", runStatus);
         String walkStatus = sharedPreferences.getString("Walking", "");
-        Log.i("status", walkStatus);
+        //Log.i("status", walkStatus);
         if (runStatus.equals("clear")) {
-            run.setBackgroundColor(Color.GREEN);
+            run.setBackgroundColor(this.getResources().getColor(R.color.green));
         } else {
             run.setBackgroundResource(R.drawable.step_btn_background);
         }
         if (walkStatus.equals("clear")) {
-            walk.setBackgroundColor(Color.GREEN);
+            walk.setBackgroundColor(this.getResources().getColor(R.color.green));
         } else {
             walk.setBackgroundResource(R.drawable.step_btn_background);
         }

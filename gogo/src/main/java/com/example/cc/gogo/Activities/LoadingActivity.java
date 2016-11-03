@@ -56,7 +56,7 @@ public class LoadingActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         step = intent.getStringExtra("step");
         state = intent.getStringExtra("state");
-        Log.i("info", "step=" + step + " state=" + state);
+        //Log.i("info", "step=" + step + " state=" + state);
         sensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
         sensorListener = new MySensorListener();
 
@@ -112,8 +112,8 @@ public class LoadingActivity extends AppCompatActivity {
                 float y = sensorEvent.values[1];
                 float z = sensorEvent.values[2];
                 double a = Math.sqrt((double) (x * x + y * y + z * z));
-                Log.i("info", "lable:" + (mAtionInt * 100 + mPostionInt) + "加速度:" + a);
-                Log.i("info", "采集样本数量:" + trainNum);
+                //Log.i("info", "lable:" + (mAtionInt * 100 + mPostionInt) + "加速度:" + a);
+                //Log.i("info", "采集样本数量:" + trainNum);
                 if (currentIndex >= num) {
                     data[trainNum] = dataToFeaturesArr(accArr.clone());
                     currentIndex = 0;
@@ -128,8 +128,10 @@ public class LoadingActivity extends AppCompatActivity {
                             sharedPreferences = getSharedPreferences("CollectStatus", MODE_PRIVATE);
                         }
                         SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(state+step,"clear");
+                        Log.i("shared",state+step);
                         editor.putString(state, "clear");
-                        Log.i("status", state + " clear");
+                        //Log.i("status", state + " clear");
                         editor.commit();
                         Toast.makeText(LoadingActivity.this, "数据采集完成！", Toast.LENGTH_LONG).show();
                     }
