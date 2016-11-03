@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/stp_num"
+            android:id="@+id/step_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -35,6 +35,7 @@
 
 
                 <TextView
+                    android:id="@+id/step_target"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -48,7 +49,7 @@
 
 
         <TextView
-            android:id="@+id/com_deg"
+            android:id="@+id/step_percent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -65,7 +66,7 @@
             android:layout_marginTop="10dp"
             android:background="#d0d0d0" />
 
-        <LinearLayout
+       <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_margin="15dp"
@@ -84,6 +85,7 @@
                     android:textSize="20sp"
                     android:textAlignment="center" />
                 <TextView
+                    android:id="@+id/distance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -107,6 +109,7 @@
                     android:textSize="20sp"
                     android:textAlignment="center" />
                 <TextView
+                    android:id="@+id/calories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -124,7 +127,7 @@
             android:layout_height="1dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray" />-->
 
         <!-- <include layout="@layout/step_msg" />
  -->

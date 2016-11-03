@@ -43,6 +43,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.concurrent.SynchronousQueue;
 
 import libsvm.svm;
 
@@ -52,12 +53,13 @@ import libsvm.svm;
 public class RunFragment extends Fragment implements View.OnClickListener {
     View view;
     MainActivity mActivity;
-    Button btn_reset, btn_start;
+    Button btn_reset, btn_start, btn_pause;
     TextView tv_run, tv_walk;
     TextView cm_pass_time;
     SensorManager sensorManager;
     StepDetector sensorListener;
     SVM mSvm;
+    TextView tv_distance, tv_calories, tv_velocity;
     //running parameters
     private long timer = 0;// 运动时间
     private long startTimer = 0;// 开始时间
@@ -116,11 +118,11 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                 tv_walk.setTextColor(Color.parseColor("#ff33b5e5"));
                 tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
             }
-/*
+
             tv_distance.setText(formatDouble(distance));// 显示路程
             tv_calories.setText(formatDouble(calories));// 显示卡路里
             tv_velocity.setText(formatDouble(velocity));// 显示速度
-*/
+
             cm_pass_time.setText(getFormatTime(timer));// 显示当前运行时间
 
 
@@ -135,14 +137,19 @@ public class RunFragment extends Fragment implements View.OnClickListener {
     protected void findView() {
         btn_reset = (Button) view.findViewById(R.id.btn_reset);
         btn_start = (Button) view.findViewById(R.id.btn_start);
+        btn_pause = (Button) view.findViewById(R.id.btn_pause);
         tv_run = (TextView) view.findViewById(R.id.tv_run);
         tv_walk = (TextView) view.findViewById(R.id.tv_walk);
         cm_pass_time = (TextView) view.findViewById(R.id.cm_pass_time);
+        tv_calories = (TextView) view.findViewById(R.id.tv_calorie);
+        tv_distance = (TextView) view.findViewById(R.id.tv_distance);
+        tv_velocity = (TextView) view.findViewById(R.id.tv_velocity);
     }
 
     protected void setOnClickListener() {
         btn_reset.setOnClickListener(this);
         btn_start.setOnClickListener(this);
+        btn_pause.setOnClickListener(this);
     }
 
     @Override
@@ -157,8 +164,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    public void mThread()
-    {
+    public void mThread() {
         if (thread == null) {
             thread = new Thread() {// 子线程用于监听当前步数的变化
 
@@ -176,8 +182,9 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                         }
                         if (StepCounterService.FLAG) {
                             Message msg = new Message();
-                            if (temp != StepDetector.CURRENT_SETP) {
-                                temp = StepDetector.CURRENT_SETP;
+                            total_step = StepDetector.RUN_SETP + StepDetector.WALK_STEP;
+                            if (temp != total_step) {
+                                temp = total_step;
                             }
                             if (startTimer != System.currentTimeMillis()) {
                                 timer = System.currentTimeMillis()
@@ -220,10 +227,17 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_start:
                 getActivity().startService(service);
-                //loadModelAndRange();
-                startTimer = System.currentTimeMillis();
-                //tempTime = timer;
-                //Log.i("time", String.valueOf(startTimer) + " " + getFormatTime(tempTime) + " " + getFormatTime(timer));
+                startTimer = System.currentTimeMillis() - tempTime;
+                btn_start.setVisibility(View.GONE);
+                btn_pause.setVisibility(View.VISIBLE);
+                break;
+            case R.id.btn_pause:
+                getActivity().stopService(service);
+                tv_walk.setTextColor(Color.parseColor("#ff33b5e5"));
+                tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
+                tempTime = System.currentTimeMillis()-startTimer;
+                btn_start.setVisibility(View.VISIBLE);
+                btn_pause.setVisibility(View.GONE);
                 break;
             case R.id.btn_reset:
                 getActivity().stopService(service);
@@ -234,35 +248,19 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                 tv_walk.setTextColor(Color.parseColor("#ff33b5e5"));
                 tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
                 //tempTime =
+                distance = calories = velocity = 0.0;
                 timer = 0;
                 init();
-                    /*btn_stop.setText(getString(R.string.pause));
-                    btn_stop.setEnabled(false);
-
-                    tv_timer.setText(getFormatTime(timer));      //如果关闭之后，格式化时间
-
-                    tv_show_step.setText("0");
-                    tv_distance.setText(formatDouble(0.0));
-                    tv_calories.setText(formatDouble(0.0));
-                    tv_velocity.setText(formatDouble(0.0));*/
+                btn_start.setVisibility(View.VISIBLE);
+                btn_pause.setVisibility(View.GONE);
+                tv_distance.setText(formatDouble(0.0));
+                tv_calories.setText(formatDouble(0.0));
+                tv_velocity.setText(formatDouble(0.0));
                 cm_pass_time.setText(getFormatTime(timer));
                 tv_walk.setText(0 + "");
                 tv_run.setText(0 + "");
                 handler.removeCallbacks(thread);
                 break;
-        }
-    }
-
-    /**
-     * 加载model和range
-     */
-    private void loadModelAndRange() {
-        try {
-            mSvm = new SVM(svm.svm_load_model(
-                    new BufferedReader(new InputStreamReader(new FileInputStream(dir + separator + modelFileName)))),
-                    inputStreamToArray(new FileInputStream(dir + separator + rangeFileName)));
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -292,10 +290,10 @@ public class RunFragment extends Fragment implements View.OnClickListener {
      * 计算行走的距离
      */
     private void countDistance() {
-        if (StepDetector.CURRENT_SETP % 2 == 0) {
-            distance = (StepDetector.CURRENT_SETP / 2) * 3 * step_length * 0.01;
+        if ((StepDetector.WALK_STEP + StepDetector.RUN_SETP) == 0) {
+            distance = ((StepDetector.WALK_STEP + StepDetector.RUN_SETP) / 2) * 3 * step_length * 0.01;
         } else {
-            distance = ((StepDetector.CURRENT_SETP / 2) * 3 + 1) * step_length * 0.01;
+            distance = ((StepDetector.WALK_STEP + StepDetector.RUN_SETP) / 2 * 3 + 1) * step_length * 0.01;
         }
     }
 
@@ -303,10 +301,10 @@ public class RunFragment extends Fragment implements View.OnClickListener {
      * 实际的步数
      */
     private void countStep() {
-        if (StepDetector.CURRENT_SETP % 2 == 0) {
-            total_step = StepDetector.CURRENT_SETP;
+        if ((StepDetector.WALK_STEP + StepDetector.RUN_SETP) % 2 == 0) {
+            total_step = (StepDetector.WALK_STEP + StepDetector.RUN_SETP);
         } else {
-            total_step = StepDetector.CURRENT_SETP + 1;
+            total_step = (StepDetector.WALK_STEP + StepDetector.RUN_SETP) + 1;
         }
 
         if (StepDetector.RUN_SETP % 2 == 0) {
@@ -334,8 +332,11 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         // TODO Auto-generated method stub
         super.onResume();
         Log.i("APP", "on resuame.");
-        tv_run.setText(run_step+"");
-        tv_walk.setText(walk_step+"");
+        tv_run.setText(run_step + "");
+        tv_walk.setText(walk_step + "");
+        tv_distance.setText(formatDouble(distance));// 显示路程
+        tv_calories.setText(formatDouble(calories));// 显示卡路里
+        tv_velocity.setText(formatDouble(velocity));// 显示速度
         //timer = System.currentTimeMillis()-startTimer;
         //cm_pass_time.setText(getFormatTime(timer));
         // 获取界面控件
@@ -366,11 +367,11 @@ public class RunFragment extends Fragment implements View.OnClickListener {
      * 初始化界面
      */
     private void init() {
-        if(SettingsActivity.sharedPreferences != null){
-        step_length = SettingsActivity.sharedPreferences.getInt(
-                SettingsActivity.STEP_LENGTH_VALUE, 70);
-        weight = SettingsActivity.sharedPreferences.getInt(
-                SettingsActivity.WEIGHT_VALUE, 50);
+        if (SettingsActivity.sharedPreferences != null) {
+            step_length = SettingsActivity.sharedPreferences.getInt(
+                    SettingsActivity.STEP_LENGTH_VALUE, 70);
+            weight = SettingsActivity.sharedPreferences.getInt(
+                    SettingsActivity.WEIGHT_VALUE, 50);
         } else {
             step_length = 70;
             weight = 50;
@@ -393,21 +394,19 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         cm_pass_time.setText(getFormatTime(timer));
         tv_run.setText(0 + "");
         tv_walk.setText(0 + "");
-        /*
         tv_distance.setText(formatDouble(distance));
         tv_calories.setText(formatDouble(calories));
         tv_velocity.setText(formatDouble(velocity));
 
-        tv_show_step.setText(total_step + "");
-
-        btn_start.setEnabled(!StepCounterService.FLAG);
-        btn_stop.setEnabled(StepCounterService.FLAG);*/
+        //tv_show_step.setText(total_step + "");
+        //btn_start.setEnabled(!StepCounterService.FLAG);
+        //btn_pause.setEnabled(StepCounterService.FLAG);*/
 
         /*if (StepCounterService.FLAG) {
-            btn_stop.setText(getString(R.string.pause));
+            btn_pause.setText(getString(R.string.pause));
         } else if (StepDetector.CURRENT_SETP > 0) {
-            btn_stop.setEnabled(true);
-            btn_stop.setText(getString(R.string.cancel));
+            btn_pause.setEnabled(true);
+            btn_pause.setText(getString(R.string.cancel));
         }*/
     }
 

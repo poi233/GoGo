@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cc.gogo.R;
@@ -23,7 +22,6 @@ import java.io.IOException;
 
 import static com.example.cc.gogo.svm.SVM.dataToFeaturesArr;
 import static com.example.cc.gogo.util.Constant.dir;
-import static com.example.cc.gogo.util.Constant.train;
 
 public class LoadingActivity extends AppCompatActivity {
     com.shinelw.library.ColorArcProgressBar progressBar;
@@ -35,9 +33,7 @@ public class LoadingActivity extends AppCompatActivity {
 
     double mAtionInt = 1;                               // action 的label
     double mPostionInt = 1;                             // position 的label
-    int mSensorHzInt;                                   // sensor采样频率
 
-    Boolean isFinish = true;
     SensorManager sensorManager;                        // 传感器管理器
     MySensorListener sensorListener;                    // 传感器监听类,当传感器数据变化时会调用该类的onSensorChanged()方法
     FileOutputStream outputStream;
