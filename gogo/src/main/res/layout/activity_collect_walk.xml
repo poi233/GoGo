@@ -26,7 +26,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="手持模式(可选)"
+            android:text="手持模式"
             android:textColor="@drawable/step_mode_btn"
             android:textSize="25sp"
             android:textStyle="normal|bold" />
@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="口袋模式(可选)"
+            android:text="口袋模式"
             android:textColor="@drawable/step_mode_btn"
             android:textSize="25sp"
             android:textStyle="normal|bold" />
@@ -49,7 +49,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="手臂模式(可选)"
+            android:text="手臂模式"
             android:textColor="@drawable/step_mode_btn"
             android:textSize="25sp"
             android:textStyle="normal|bold" />

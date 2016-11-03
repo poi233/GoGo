@@ -47,8 +47,11 @@
             android:screenOrientation="portrait" />
 
         <service android:name=".Service.StepCounterService" />
+
         <activity
             android:name=".Activities.LoadingActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".Activities.MyAimActivity"></activity>
     </application>
+
 </manifest>

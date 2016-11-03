@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.cc.gogo.Activities.CollectionMenuActivity;
+import com.example.cc.gogo.Activities.MyAimActivity;
 import com.example.cc.gogo.Activities.SettingsActivity;
 import com.example.cc.gogo.Activities.StepsActivity;
 import com.example.cc.gogo.R;
@@ -20,6 +21,7 @@ import com.example.cc.gogo.R;
 public class SettingFragment extends Fragment implements View.OnClickListener {
     Button collectButton;
     Button settingButton;
+    Button my_aimButton;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -47,11 +49,13 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public void findView(View rootView) {
         collectButton = (Button) rootView.findViewById(R.id.collect);
         settingButton = (Button) rootView.findViewById(R.id.setting);
+        my_aimButton=(Button)rootView.findViewById(R.id.my_aim);
     }
 
     public void setOnclickListener() {
         collectButton.setOnClickListener(this);
         settingButton.setOnClickListener(this);
+        my_aimButton.setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +66,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.setting:
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
+                break;
+            case R.id.my_aim:
+                startActivity(new Intent(getActivity(),MyAimActivity.class));
+                break;
             default:
                 break;
         }
