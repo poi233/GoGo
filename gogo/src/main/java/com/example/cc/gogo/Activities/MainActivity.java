@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new CollectionFragment());
         fragmentList.add(new RunFragment());
         fragmentList.add(new SettingFragment());
+        fragmentList.add(new AdviceFragment());
         /*//initial fragment show
         *//*FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -90,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.setting:
                         //SettingFragment sf = new SettingFragment();
                         fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(2));
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
+                        fragmentTransaction.commit();
+                        break;
+                    case R.id.advice:
+                        //SettingFragment sf = new SettingFragment();
+                        fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(3));
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();

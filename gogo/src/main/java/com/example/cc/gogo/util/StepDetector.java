@@ -32,9 +32,7 @@ import static com.example.cc.gogo.util.Constant.wzMapFromCode;
 import static java.io.File.separator;
 //走步检测器，用于检测走步并计数
 
-/**
- * 具体算法不太清楚，本算法是从谷歌计步器：Pedometer上截取的部分计步算法
- */
+
 public class StepDetector implements SensorEventListener {
 
     public static int CURRENT_SETP = 0;

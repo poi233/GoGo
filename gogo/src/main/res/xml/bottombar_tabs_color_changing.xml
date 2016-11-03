@@ -8,7 +8,7 @@
     <tab
         barColorWhenSelected="#5D4037"
         icon="@drawable/sport"
-        id="@+id/sport"
+        id="@+id/advice"
         title="Advice" />
     <tab
         barColorWhenSelected="#7B1FA2"
