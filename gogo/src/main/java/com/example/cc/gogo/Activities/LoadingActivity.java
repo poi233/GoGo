@@ -29,7 +29,7 @@ public class LoadingActivity extends AppCompatActivity {
     com.shinelw.library.ColorArcProgressBar progressBar;
     String step, state;//上级传参
     public static SharedPreferences sharedPreferences;
-    String data[][] = new String[10][10];
+    String data[][] = new String[25][10];
 
     int trainNum;
 
@@ -92,9 +92,11 @@ public class LoadingActivity extends AppCompatActivity {
      * 根据采样频率打开传感器
      */
     private void openSensor() {
-        sensorManager.registerListener(sensorListener,
+        /*sensorManager.registerListener(sensorListener,
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                1000 * 1000 / 32);
+                1000 * 1000 / 32);*/
+        sensorManager.registerListener(sensorListener,
+                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_GAME);
     }
 
     public class MySensorListener implements SensorEventListener {
@@ -118,8 +120,8 @@ public class LoadingActivity extends AppCompatActivity {
                     data[trainNum] = dataToFeaturesArr(accArr.clone());
                     currentIndex = 0;
                     trainNum++;
-                    progressBar.setCurrentValues(trainNum * 10);
-                    if (trainNum == 10) {
+                    progressBar.setCurrentValues(trainNum * 4);
+                    if (trainNum == 25) {
                         closeSensor();
                         saveDataToFile(data);
                         trainNum = 0;
@@ -155,7 +157,7 @@ public class LoadingActivity extends AppCompatActivity {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("\n");
         Log.i("data",data[0][1]+" "+data[0][2]);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 5; i < 20; i++) {
             stringBuffer.append(mAtionInt * 100 + mPostionInt);
             for (int j = 0;j<8;j++) {
                 stringBuffer.append(" " + data[i][j]);
