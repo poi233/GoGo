@@ -2,6 +2,7 @@ package com.example.cc.gogo.Activities;
 
 import android.app.FragmentTransaction;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,8 @@ import android.support.annotation.*;
 
 import com.example.cc.gogo.Fragments.*;
 import com.example.cc.gogo.R;
+import com.lovearthstudio.duasdk.Dua;
+import com.lovearthstudio.duaui.DuaActivityLogin;
 import com.roughike.bottombar.*;
 
 
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        selectPager();
         setContentView(com.example.cc.gogo.R.layout.main_activity);
         requestWriteFilePermission(this);
         init();
@@ -122,6 +126,16 @@ public class MainActivity extends AppCompatActivity {
         copyFileToSd();
         loadModelAndRange();
     }
+
+    private void selectPager() {
+        Dua.DuaUser duaUser = Dua.getInstance().getCurrentDuaUser();
+        if (duaUser.logon) {
+            return;
+        } else {
+            startActivityForResult(new Intent(this, DuaActivityLogin.class), 10086);
+        }
+    }
+
 
     /**
      * copy model 和 range文件到sd卡

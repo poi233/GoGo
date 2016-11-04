@@ -1,1 +1,1 @@
-include ':gogo'
+include ':gogo', ':popup', ':duaui'

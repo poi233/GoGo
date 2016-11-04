@@ -9,11 +9,18 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:name=".app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.IntroActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.SettingsActivity"
             android:screenOrientation="portrait" />
@@ -30,28 +37,20 @@
         <activity
             android:name=".Activities.MainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".Activities.MusicActivity" />
-        <activity android:name=".Activities.Main2Activity" />
         <activity
             android:name=".Activities.CollectionMenuActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.CollectWalkActivity"
             android:screenOrientation="portrait" />
-
-        <service android:name=".Service.StepCounterService" />
-
         <activity
             android:name=".Activities.LoadingActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.MyAimActivity"></activity>
-    </application>
+        <activity android:name=".Activities.MyAimActivity" />
 
+        <service android:name=".Service.StepCounterService" />
+
+    </application>
 </manifest>

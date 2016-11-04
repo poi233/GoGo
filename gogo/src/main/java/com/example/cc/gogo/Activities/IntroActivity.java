@@ -11,6 +11,10 @@ import com.example.cc.gogo.R;
 import com.example.cc.gogo.Slides.SampleSlide;
 import com.github.paolorotolo.appintro.AppIntro;
 
+import com.lovearthstudio.duasdk.Dua;
+import com.lovearthstudio.duaui.DuaActivityLogin;
+
+
 public class IntroActivity extends AppIntro {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +64,7 @@ public class IntroActivity extends AppIntro {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 
     @Override
     public void onSkipPressed() {
