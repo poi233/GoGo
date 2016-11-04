@@ -276,7 +276,20 @@
         android:textSize="14sp" />
         </RelativeLayout>
 
+        <RelativeLayout
 
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:clickable="true" >
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="48dp"
+            android:background="#FF6347"
+            android:text="退出登陆"
+            android:textColor="#FFFFFF" />
+        </RelativeLayout>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="wrap_content"

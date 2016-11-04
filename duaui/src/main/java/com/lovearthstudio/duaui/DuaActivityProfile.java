@@ -3,6 +3,7 @@ package com.lovearthstudio.duaui;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -64,7 +65,6 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
     private ImageView iv_avatar;
     private RelativeLayout rl_sign;
     private TextView tv_sign;
-
     private int RESOURCE_ID_START;
 
 
@@ -75,6 +75,8 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
     private Button btn_picker_ensure;
     private int curType;
     private String curDate;
+
+    private Button logout;
 
     public static final String PREF_PROFILE = "profile";
 
@@ -144,6 +146,10 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
         rl_sign.setOnClickListener(this);
         tv_sign = (TextView) findViewById(R.id.tv_sign);
 
+        logout=(Button)findViewById(R.id.logout);
+        logout.setOnClickListener(this);
+
+
         tv_name.setText(initProfile("name", ""));
         tv_bday.setText(initProfile("bday", ""));
         tv_height.setText(initProfile("height", "cm"));
@@ -208,6 +214,22 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
                 dlg.cancel();
             }
         });
+    }
+    private void showLogoutDialog()
+    {
+        AlertDialog.Builder builder0 = new AlertDialog.Builder(DuaActivityProfile.this);
+        builder0.setTitle("提示").setMessage("确定退出登陆？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //确定按钮的点击事件
+
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //取消按钮的点击事件
+            }
+        }).show();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -274,8 +296,8 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
                     updateProfile("name", content);
                     pop.dismiss();
                 }
-            });
-            pop.showPopupWindow();
+            });pop.showPopupWindow();
+
         } else if (i == R.id.rl_bday) {
             if (rl_picker.getVisibility() == View.VISIBLE) {
                 rl_picker.setVisibility(View.GONE);
@@ -338,6 +360,9 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
                 }
             });
             pop.showPopupWindow();
+        }
+        else if(i == R.id.logout){
+            showLogoutDialog();
         }
     }
 
