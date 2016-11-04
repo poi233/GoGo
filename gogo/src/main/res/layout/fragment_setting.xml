@@ -8,33 +8,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
+
         <Button
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/step_btn_background"
+            android:text="个人信息"
+            android:textColor="@drawable/step_btn_color" />"
+
+        <Button
+            android:id="@+id/collect"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/step_btn_background"
             android:text="数据采集"
-            android:layout_width="match_parent"
-            android:layout_margin="20dp"
-            android:layout_height="80dp"
-            android:background="@drawable/step_btn_background"
-            android:textColor="@drawable/step_btn_color"
-            android:id="@+id/collect"/>"
-
-    <Button
-        android:text="修改参数"
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:layout_height="80dp"
-        android:background="@drawable/step_btn_background"
-        android:textColor="@drawable/step_btn_color"
-        android:id="@+id/setting" />
+            android:textColor="@drawable/step_btn_color" />"
 
         <Button
-            android:text="我的目标"
+            android:id="@+id/setting"
             android:layout_width="match_parent"
-            android:layout_margin="20dp"
             android:layout_height="80dp"
+            android:layout_margin="20dp"
             android:background="@drawable/step_btn_background"
-            android:textColor="@drawable/step_btn_color"
-            android:id="@+id/my_aim" />
+            android:text="修改参数"
+            android:textColor="@drawable/step_btn_color" />
+
+        <Button
+            android:id="@+id/my_aim"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/step_btn_background"
+            android:text="我的目标"
+            android:textColor="@drawable/step_btn_color" />
     </LinearLayout>
 
 </FrameLayout>

@@ -14,6 +14,8 @@ import com.example.cc.gogo.Activities.MyAimActivity;
 import com.example.cc.gogo.Activities.SettingsActivity;
 import com.example.cc.gogo.Activities.StepsActivity;
 import com.example.cc.gogo.R;
+import com.lovearthstudio.duaui.DuaActivityLogin;
+import com.lovearthstudio.duaui.DuaActivityProfile;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +24,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     Button collectButton;
     Button settingButton;
     Button my_aimButton;
+    Button profile;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -49,13 +52,15 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public void findView(View rootView) {
         collectButton = (Button) rootView.findViewById(R.id.collect);
         settingButton = (Button) rootView.findViewById(R.id.setting);
-        my_aimButton=(Button)rootView.findViewById(R.id.my_aim);
+        my_aimButton = (Button) rootView.findViewById(R.id.my_aim);
+        profile = (Button) rootView.findViewById(R.id.profile);
     }
 
     public void setOnclickListener() {
         collectButton.setOnClickListener(this);
         settingButton.setOnClickListener(this);
         my_aimButton.setOnClickListener(this);
+        profile.setOnClickListener(this);
     }
 
     @Override
@@ -68,8 +73,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
                 break;
             case R.id.my_aim:
-                startActivity(new Intent(getActivity(),MyAimActivity.class));
+                startActivity(new Intent(getActivity(), MyAimActivity.class));
                 break;
+            case R.id.profile:
+                startActivity(new Intent(getActivity(), DuaActivityProfile.class));
             default:
                 break;
         }

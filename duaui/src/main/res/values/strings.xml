@@ -15,6 +15,7 @@
     <string name="dua_action_ensure">确定</string>
     <string name="dua_action_forget_pwd">忘记密码</string>
     <string name="dua_prompt_sex">您是...?</string>
+    <string name="set_password">请设置密码</string>
     <string name="dua_prompt_laststep">还差一步</string>
     <string name="dua_prompt_nickname">给自己起个昵称吧~15个字以内哦</string>
     <string name="dua_button_pick">选择</string>

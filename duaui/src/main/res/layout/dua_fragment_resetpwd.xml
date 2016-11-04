@@ -4,7 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:singleLine="true"
+        android:textSize="30sp"
+        android:text="@string/set_password"/>
     <com.lovearthstudio.duaui.base.PasswordEdit
         android:layout_width="match_parent"
         android:layout_height="48dp"
