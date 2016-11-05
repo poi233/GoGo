@@ -256,7 +256,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                 tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
                 //tempTime =
                 distance = calories = velocity = 0.0;
-                timer = 0;
+                timer = tempTime = 0;
                 init();
                 btn_start.setVisibility(View.VISIBLE);
                 btn_pause.setVisibility(View.GONE);
