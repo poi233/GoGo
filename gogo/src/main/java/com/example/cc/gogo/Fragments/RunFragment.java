@@ -67,6 +67,8 @@ public class RunFragment extends Fragment implements View.OnClickListener {
     private long tempTime = 0;
 
     private Double distance = 0.0;// 路程：米
+    private Double walk_disance = 0.0;
+    private Double run_disatance = 0.0;
     private Double calories = 0.0;// 热量：卡路里
     private Double velocity = 0.0;// 速度：米每秒
 
@@ -95,8 +97,13 @@ public class RunFragment extends Fragment implements View.OnClickListener {
 
             if (timer != 0 && distance != 0.0) {
 
-                // 体重、距离 跑步热量（kcal）＝体重（kg）×距离（公里）×1.036
-                calories = weight * distance * 0.001;
+                // 体重、距离
+                // 跑步热量（kcal）＝ 体重（kg）×距离（公里）×1.036
+                // 走路热量 (kcal) = 体重（kg）×距离（公里）×0.259
+                Double run_calories = weight * distance * 0.001036;
+                Double walk_calories = weight * distance * 0.000259;
+                calories = run_calories + walk_calories;
+
                 //速度velocity
                 velocity = distance * 1000 / timer;
             } else {
@@ -295,6 +302,16 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         } else {
             distance = ((StepDetector.WALK_STEP + StepDetector.RUN_SETP) / 2 * 3 + 1) * step_length * 0.01;
         }
+        if ((StepDetector.RUN_SETP) == 0) {
+            run_disatance = ((StepDetector.RUN_SETP) / 2) * 3 * step_length * 0.01;
+        } else {
+            run_disatance = ((StepDetector.RUN_SETP) / 2 * 3 + 1) * step_length * 0.01;
+        }
+        if ((StepDetector.WALK_STEP) == 0) {
+            walk_disance = ((StepDetector.WALK_STEP) / 2) * 3 * step_length * 0.01;
+        } else {
+            walk_disance = ((StepDetector.WALK_STEP) / 2 * 3 + 1) * step_length * 0.01;
+        }
     }
 
     /**
@@ -383,9 +400,11 @@ public class RunFragment extends Fragment implements View.OnClickListener {
         if ((timer) != 0 && distance != 0.0) {  //tempTime记录运动的总时间，timer记录每次运动时间
 
             // 体重、距离
-            // 跑步热量（kcal）＝体重（kg）×距离（公里）×1.036，换算一下
-            calories = weight * distance * 0.001;
-
+            // 跑步热量（kcal）＝ 体重（kg）×距离（公里）×1.036
+            // 走路热量 (kcal) = 体重（kg）×距离（公里）×0.259
+            Double run_calories = weight * distance * 0.001036;
+            Double walk_calories = weight * distance * 0.000259;
+            calories = run_calories + walk_calories;
             velocity = distance * 1000 / timer;
         } else {
             calories = 0.0;
