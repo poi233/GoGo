@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        selectPager();
         setContentView(com.example.cc.gogo.R.layout.main_activity);
+        //selectPager();
         requestWriteFilePermission(this);
         init();
         final List<Fragment> fragmentList = new ArrayList<>();
@@ -62,15 +62,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new RunFragment());
         fragmentList.add(new SettingFragment());
         fragmentList.add(new AdviceFragment());
-        /*//initial fragment show
-        *//*FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        CollectionFragment cf = new CollectionFragment();
-        //fragmentTransaction.replace(R.id.contentContainer,cf);
-        fragmentTransaction.addToBackStack("");
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
-        fragmentTransaction.commit();*//*
-        //bottom show*/
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
