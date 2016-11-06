@@ -39,7 +39,7 @@
             android:textColor="@color/black"
             android:textSize="25sp" />
         </LinearLayout>
-        <TextView
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="10dp"
@@ -62,10 +62,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:gravity="center"
-                android:text="100天"
+                android:text="1天"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
-        </LinearLayout>
+        </LinearLayout>-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -85,6 +85,7 @@
                 android:textColor="@color/black"
                 android:textSize="25sp" />
             <TextView
+                android:id="@+id/advice_step"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
