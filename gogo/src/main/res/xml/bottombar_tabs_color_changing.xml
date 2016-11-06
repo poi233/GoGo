@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
-    <tab
+    <!--<tab
         barColorWhenSelected="@color/colorAccent"
         icon="@drawable/home"
         id="@+id/home"
-        title="Home" />
+        title="Home" />-->
     <tab
         barColorWhenSelected="#5D4037"
         icon="@drawable/sport"

@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -60,6 +61,9 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
     private RelativeLayout rl_weight;
     private TextView tv_weight;
     private List weightData = newIncArray(50, 50);
+    private RelativeLayout rl_frequency;
+    private TextView tv_frequency;
+    private List frequencyData = new ArrayList<>();
     private RelativeLayout rl_name;
     private TextView tv_name;
     private ImageView iv_avatar;
@@ -87,6 +91,11 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //      getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.dua_activity_profile);
+
+        /*设置frequencyData*/
+        frequencyData.add("从不跑步");
+        frequencyData.add("很少跑步");
+        frequencyData.add("经常跑步");
 
         RESOURCE_ID_START = View.generateViewId();
         rl_picker = (RelativeLayout) findViewById(R.id.dua_rl_profile_picker);
@@ -139,6 +148,9 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
         rl_weight = (RelativeLayout) findViewById(R.id.rl_weight);
         rl_weight.setOnClickListener(this);
         tv_weight = (TextView) findViewById(R.id.tv_weight);
+        rl_frequency = (RelativeLayout) findViewById(R.id.rl_frequency);
+        rl_frequency.setOnClickListener(this);
+        tv_frequency = (TextView) findViewById(R.id.tv_frequency);
         rl_avatar = (RelativeLayout) findViewById(R.id.rl_avatar);
         rl_avatar.setOnClickListener(this);
         iv_avatar = (ImageView) findViewById(R.id.iv_avatar);
@@ -146,7 +158,7 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
         rl_sign.setOnClickListener(this);
         tv_sign = (TextView) findViewById(R.id.tv_sign);
 
-        logout=(Button)findViewById(R.id.logout);
+        logout = (Button) findViewById(R.id.logout);
         logout.setOnClickListener(this);
 
 
@@ -154,6 +166,13 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
         tv_bday.setText(initProfile("bday", ""));
         tv_height.setText(initProfile("height", "cm"));
         tv_weight.setText(initProfile("weight", "kg"));
+        if (initProfile("frequency", "").equals("0")) {
+            tv_frequency.setText("从不跑步");
+        } else if (initProfile("frequency", "").equals("1")) {
+            tv_frequency.setText("很少跑步");
+        } else if (initProfile("frequency", "").equals("2")) {
+            tv_frequency.setText("经常跑步");
+        }
         tv_sign.setText(initProfile("saying", ""));
         tv_sex.setText(SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "sex", "").equals("F") ? "女" : "男");
         String avatar = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "avatar", "");
@@ -215,14 +234,15 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
             }
         });
     }
-    private void showLogoutDialog()
-    {
+
+    private void showLogoutDialog() {
         AlertDialog.Builder builder0 = new AlertDialog.Builder(DuaActivityProfile.this);
         builder0.setTitle("提示").setMessage("确定退出登陆？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //确定按钮的点击事件
-
+                Dua.getInstance().logout();
+                DuaActivityProfile.this.finish();
             }
         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
@@ -296,7 +316,8 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
                     updateProfile("name", content);
                     pop.dismiss();
                 }
-            });pop.showPopupWindow();
+            });
+            pop.showPopupWindow();
 
         } else if (i == R.id.rl_bday) {
             if (rl_picker.getVisibility() == View.VISIBLE) {
@@ -333,6 +354,18 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
                 rl_picker.setVisibility(View.VISIBLE);
                 curType = 2;
             }
+        } else if (i == R.id.rl_frequency) {
+            if (rl_picker.getVisibility() == View.VISIBLE) {
+                rl_picker.setVisibility(View.GONE);
+            } else {
+                wheelPicker.setData(frequencyData);
+                wheelPicker.setSelectedItemPosition(frequencyData.size() / 2);
+                wheelPicker.setItemTextSize(75);
+                datePicker.setVisibility(View.GONE);
+                wheelPicker.setVisibility(View.VISIBLE);
+                rl_picker.setVisibility(View.VISIBLE);
+                curType = 3;
+            }
         } else if (i == R.id.dua_profile_picker_cancel) {
             rl_picker.setVisibility(View.GONE);
         } else if (i == R.id.dua_profile_picker_ensure) {
@@ -346,7 +379,22 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
                 updateProfile("weight", data2);
             } else if (curType == 0) {
                 tv_bday.setText(curDate);
+                int birth_year = Integer.parseInt(curDate.substring(0,curDate.indexOf("/")));
+                int current_year = Calendar.getInstance().get(Calendar.YEAR);
+                int age = current_year - birth_year;
                 updateProfile("bday", curDate);
+                updateProfile("age",age);
+                Log.i("age",age+"");
+            } else if (curType == 3) {
+                Object data3 = frequencyData.get(wheelPicker.getCurrentItemPosition());
+                tv_frequency.setText(data3 + "");
+                if (data3.equals("从不跑步")) {
+                    updateProfile("frequency", 0);
+                } else if (data3.equals("很少跑步")) {
+                    updateProfile("frequency", 1);
+                } else if (data3.equals("经常跑步")) {
+                    updateProfile("frequency", 2);
+                }
             }
             rl_picker.setVisibility(View.GONE);
         } else if (i == R.id.rl_sign) {
@@ -360,8 +408,7 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
                 }
             });
             pop.showPopupWindow();
-        }
-        else if(i == R.id.logout){
+        } else if (i == R.id.logout) {
             showLogoutDialog();
         }
     }
@@ -444,7 +491,7 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onDateSelected(WheelDatePicker picker, Date date) {
-        curDate = TimeUtil.toTimeString(date.getTime(), "yyyyMMdd");
+        curDate = TimeUtil.toTimeString(date.getTime(), "yyyy/MM/dd");
     }
 
     @Override

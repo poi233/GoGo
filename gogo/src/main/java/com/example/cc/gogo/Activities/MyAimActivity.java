@@ -3,8 +3,10 @@ package com.example.cc.gogo.Activities;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.example.cc.gogo.R;
@@ -45,10 +47,21 @@ public class MyAimActivity extends AppCompatActivity implements View.OnClickList
         AlertDialog.Builder builder;
         switch (v.getId()){
             case R.id.set_by_self:
-               builder =  new AlertDialog.Builder(MyAimActivity.this);
+                builder =  new AlertDialog.Builder(MyAimActivity.this);
                 builder.setTitle("选择强度");
                 builder.setItems(new String[]{"很高", "高", "中", "低"}, null);
                 builder.show();
+                builder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Log.i("builder",position+"");
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
                 break;
             case R.id.use_advice:
                 builder  = new AlertDialog.Builder(MyAimActivity.this);

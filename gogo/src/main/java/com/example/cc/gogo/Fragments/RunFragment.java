@@ -82,7 +82,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
     private Thread thread;  //定义线程对象
 
 
-    Handler handler = new Handler() {// Handler对象用于更新当前步数,定时发送消息，调用方法查询数据用于显示？？？？？？？？？？
+    Handler handler =  new Handler() {// Handler对象用于更新当前步数,定时发送消息，调用方法查询数据用于显示？？？？？？？？？？
         //主要接受子线程发送的数据, 并用此数据配合主线程更新UI
         //Handler运行在主线程中(UI线程中), 它与子线程可以通过Message对象来传递数据,
         //Handler就承担着接受子线程传过来的(子线程用sendMessage()方法传递Message对象，(里面包含数据)
@@ -428,61 +428,5 @@ public class RunFragment extends Fragment implements View.OnClickListener {
             btn_pause.setText(getString(R.string.cancel));
         }*/
     }
-
-
-/*
-    public class MySensorListener implements SensorEventListener {
-        int num = 128;
-        public double[] accArr = new double[num];
-        public int currentIndex = 0;
-
-
-
-        @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
-            */
-/**
- * 采集128个数据,归一化,预测
- *//*
-
-            if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                float x = sensorEvent.values[0];
-                float y = sensorEvent.values[1];
-                float z = sensorEvent.values[2];
-                double a = Math.sqrt((double) (x * x + y * y + z * z));
-                Log.i("info",String.valueOf(a));
-                //mTvSensor.setText("加速度:" + a);
-                if (currentIndex >= num) {
-                    String[] data = dataToFeaturesArr(accArr.clone());
-                    Log.i("info",data[1]);
-                    double code = mSvm.predictUnscaled(data, false);
-                    double act = (int) code / 100;
-                    double position = code - act * 100;
-                    String strAct = actMapFromCode.get(act);
-                    String strPosition = wzMapFromCode.get(position);
-                    System.out.println("--------" + code + ":" + act + ":" + position);
-                    if (strAct.equals("Walking")) {
-                        tv_walk.setTextColor(Color.parseColor("#ffff4444"));
-                        tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
-                    } else if (strAct.equals("Running"))
-                    {
-                        tv_run.setTextColor(Color.parseColor("#ffff4444"));
-                        tv_walk.setTextColor(Color.parseColor("#ff33b5e5"));
-                    } else {
-                        tv_walk.setTextColor(Color.parseColor("#ff33b5e5"));
-                        tv_run.setTextColor(Color.parseColor("#ff33b5e5"));
-                    }
-                    //mTvResult.setText("预测:action" + strAct + "------postion:" + strPosition);
-                    currentIndex = 0;
-                }
-                accArr[currentIndex++] = a;
-            }
-        }
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int i) {
-
-        }
-    }
-*/
 
 }
