@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/dua_bar_right_text"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:textSize="@dimen/dua_title_size"
