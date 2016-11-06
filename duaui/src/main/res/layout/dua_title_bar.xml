@@ -34,12 +34,14 @@
         android:layout_weight="1"
         android:textSize="@dimen/dua_title_size"
         android:text="登陆"
+        android:visibility="gone"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/dua_bar_right_text"
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:textSize="@dimen/dua_title_size"

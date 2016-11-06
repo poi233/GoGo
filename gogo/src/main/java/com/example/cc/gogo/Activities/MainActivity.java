@@ -219,4 +219,12 @@ public class MainActivity extends AppCompatActivity {
     public double predictUnscaled(String[] unScaleData) {
         return mSvm.predictUnscaled(unScaleData, false);
     }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        selectPager();
+    }
+
 }
