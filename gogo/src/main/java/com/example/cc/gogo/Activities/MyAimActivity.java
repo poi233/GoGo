@@ -21,6 +21,7 @@ import butterknife.OnClick;
 public class MyAimActivity extends AppCompatActivity implements View.OnClickListener {
     Button use_advice, set_by_self;
     TextView advice_step;
+    int step_length;
     public static final String PREF_PROFILE = "profile";
 
     @Override
@@ -113,6 +114,9 @@ public class MyAimActivity extends AppCompatActivity implements View.OnClickList
                     builder.setPositiveButton("确认", null);
                     builder.show();
                 } else {
+                    step_length = SettingsActivity.sharedPreferences.getInt(
+                            SettingsActivity.STEP_LENGTH_VALUE, 70);
+
                     builder.setTitle("确认");
                     builder.setMessage("已使用推荐设置！");
                     builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
@@ -127,7 +131,6 @@ public class MyAimActivity extends AppCompatActivity implements View.OnClickList
                 break;
             default:
                 break;
-
         }
     }
 }
