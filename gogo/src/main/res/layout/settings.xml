@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cpb_background"
     android:orientation="vertical"
      >
 
@@ -12,7 +11,6 @@
         android:layout_gravity="center_horizontal"
         android:padding="10dip"
         android:text="@string/settings_title"
-        android:textColor="@android:color/white"
         android:textSize="25sp" />
 
     <LinearLayout
@@ -28,15 +26,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sensitivity"
-            android:textColor="@android:color/white" />
+            android:text="@string/sensitivity" />
 
         <TextView
             android:id="@id/sensitivity_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:textColor="@android:color/white" />
+            android:layout_marginLeft="10dip" />
     </LinearLayout>
 
     <RelativeLayout
@@ -51,8 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="@string/low"
-            android:textColor="@android:color/white" />
+            android:text="@string/low" />
 
         <SeekBar
             android:id="@id/sensitivity"
@@ -74,8 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="@string/high"
-            android:textColor="@android:color/white" />
+            android:text="@string/high" />
     </RelativeLayout>
 
     <TextView
@@ -83,8 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dip"
         android:layout_marginRight="35dip"
-        android:text="@string/sensitivity_info"
-        android:textColor="@android:color/white" />
+        android:text="@string/sensitivity_info" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -100,8 +93,7 @@
             android:layout_centerVertical="true"
             android:paddingBottom="15dip"
             android:paddingTop="15dip"
-            android:text="@string/step_length"
-            android:textColor="@android:color/white" />
+            android:text="@string/step_length" />
 
         <TextView
             android:id="@id/step_lenth_value"
@@ -110,8 +102,7 @@
             android:layout_alignTop="@id/step"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dip"
-            android:layout_toRightOf="@id/step"
-            android:textColor="@android:color/white" />
+            android:layout_toRightOf="@id/step" />
     </RelativeLayout>
 
     <SeekBar
@@ -130,16 +121,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dip"
         android:layout_marginRight="35dip"
-        android:text="@string/setp_length_info_1"
-        android:textColor="@android:color/white" />
+        android:text="@string/setp_length_info_1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dip"
         android:layout_marginRight="35dip"
-        android:text="@string/setp_length_info_2"
-        android:textColor="@android:color/white" />
+        android:text="@string/setp_length_info_2" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -155,15 +144,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/weigth"
-            android:textColor="@android:color/white" />
+            android:text="@string/weigth" />
 
         <TextView
             android:id="@id/weight_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:textColor="@android:color/white" />
+            android:layout_marginLeft="10dip" />
     </LinearLayout>
 
     <SeekBar
@@ -182,8 +169,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dip"
         android:layout_marginRight="35dip"
-        android:text="@string/weight_info"
-        android:textColor="@android:color/white" />
+        android:text="@string/weight_info" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -205,7 +191,6 @@
             android:paddingRight="25dip"
             android:paddingTop="5dip"
             android:text="@string/save"
-            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
         <Button
@@ -219,7 +204,6 @@
             android:paddingRight="25dip"
             android:paddingTop="5dip"
             android:text="@string/cancle"
-            android:textColor="@android:color/white"
             android:textStyle="bold" />
     </RelativeLayout>
 

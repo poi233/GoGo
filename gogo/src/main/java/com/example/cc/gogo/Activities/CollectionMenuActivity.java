@@ -67,12 +67,12 @@ public class CollectionMenuActivity extends AppCompatActivity implements OnClick
         String walkStatus = sharedPreferences.getString("Walking", "");
         //Log.i("status", walkStatus);
         if (runStatus.equals("clear")) {
-            run.setBackgroundColor(this.getResources().getColor(R.color.green));
+            run.setBackgroundColor(this.getResources().getColor(R.color.black));
         } else {
             run.setBackgroundResource(R.drawable.step_btn_background);
         }
         if (walkStatus.equals("clear")) {
-            walk.setBackgroundColor(this.getResources().getColor(R.color.green));
+            walk.setBackgroundColor(this.getResources().getColor(R.color.black));
         } else {
             walk.setBackgroundResource(R.drawable.step_btn_background);
         }

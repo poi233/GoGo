@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 switch (tabId) {
-                    case R.id.home:
+                    case R.id.advice:
                         //CollectionFragment cf = new CollectionFragment();
                         fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(0));
                         fragmentTransaction.addToBackStack(null);
@@ -93,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
                         break;
-                    case R.id.setting:
+                    case R.id.music:
                         //SettingFragment sf = new SettingFragment();
                         fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(2));
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
                         break;
-                    case R.id.advice:
+                    case R.id.setting:
                         //SettingFragment sf = new SettingFragment();
                         fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(3));
                         fragmentTransaction.addToBackStack(null);
