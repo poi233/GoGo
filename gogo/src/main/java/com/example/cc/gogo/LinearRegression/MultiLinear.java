@@ -1,4 +1,4 @@
-package com.example.cc.gogo.LinearLayout;
+package com.example.cc.gogo.LinearRegression;
 
 /**
  * 
