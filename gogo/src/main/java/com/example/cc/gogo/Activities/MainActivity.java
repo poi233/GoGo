@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             copyFileToSd(getAssets().open("train"), dir + separator + trainFileName);
             copyFileToSd(getAssets().open("train_still"), dir + separator + trainStillFileName);
             copyFileToSd(getAssets().open("model_backup"), dir + separator + modelFileBackupName);
+            copyFileToSd(getAssets().open("linearRegression.csv"), dir + separator + "linearRegression");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -196,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
             trainFile.mkdirs();
         }
     }
-
 
 
     /**

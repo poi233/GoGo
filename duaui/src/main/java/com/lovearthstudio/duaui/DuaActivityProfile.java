@@ -379,12 +379,12 @@ public class DuaActivityProfile extends AppCompatActivity implements View.OnClic
                 updateProfile("weight", data2);
             } else if (curType == 0) {
                 tv_bday.setText(curDate);
-                int birth_year = Integer.parseInt(curDate.substring(0,curDate.indexOf("/")));
+                int birth_year = Integer.parseInt(curDate.substring(0, curDate.indexOf("/")));
                 int current_year = Calendar.getInstance().get(Calendar.YEAR);
                 int age = current_year - birth_year;
                 updateProfile("bday", curDate);
-                updateProfile("age",age);
-                Log.i("age",age+"");
+                updateProfile("age", age);
+                Log.i("age", age + "");
             } else if (curType == 3) {
                 Object data3 = frequencyData.get(wheelPicker.getCurrentItemPosition());
                 tv_frequency.setText(data3 + "");
