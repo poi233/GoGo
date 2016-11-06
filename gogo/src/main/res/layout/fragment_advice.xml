@@ -5,50 +5,38 @@
     tools:context="com.example.cc.gogo.Fragments.RunFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <TextView
             android:id="@+id/step_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             android:gravity="center"
             android:text="@string/tab_fragment_step_tv_step"
             android:textColor="@color/black"
-            android:textSize="80sp" />
+            android:textSize="130sp" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-
-
-                <TextView
-                    android:id="@+id/step_target"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="目标 10000 步"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-        </LinearLayout>
 
 
         <TextView
+            android:id="@+id/step_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:gravity="center"
+            android:text="目标 10000 步"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textAlignment="center" />
+
+
+        <TextView
+            android:layout_marginTop="320dp"
             android:id="@+id/step_percent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,97 +45,7 @@
             android:textColor="#3299CC"
             android:textSize="50sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"
-            android:background="#d0d0d0" />
 
-       <!-- <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_margin="15dp"
-            android:orientation="horizontal" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="距离："
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textAlignment="center" />
-                <TextView
-                    android:id="@+id/distance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="XXXX公里"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-               android:layout_weight="1"
-                android:orientation="vertical" >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="消耗:"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textAlignment="center" />
-                <TextView
-                    android:id="@+id/calories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="XXXX卡路里"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />-->
-
-        <!-- <include layout="@layout/step_msg" />
- -->
-        <!--   <TextView
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginBottom="10dp"
-               android:layout_marginLeft="15dp"
-               android:layout_marginRight="15dp"
-               android:layout_marginTop="10dp"
-               android:background="#d0d0d0" />
-
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginBottom="10dp"
-               android:layout_marginTop="10dp"
-               android:background="@android:color/darker_gray" />-->
-
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>

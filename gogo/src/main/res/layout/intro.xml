@@ -45,7 +45,7 @@
         android:gravity="center"
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
-        android:text="九种模式录入个人数据"
+        android:text="多种模式录入个人数据"
         android:textColor="#ffffff"
         android:textSize="16sp" />
 
