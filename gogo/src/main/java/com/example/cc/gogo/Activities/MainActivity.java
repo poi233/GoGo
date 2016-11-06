@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        selectPager();
         setContentView(com.example.cc.gogo.R.layout.main_activity);
+        //selectPager();
         requestWriteFilePermission(this);
         init();
         final List<Fragment> fragmentList = new ArrayList<>();
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 switch (tabId) {
-                    case R.id.advice:
+                    case R.id.home:
                         //CollectionFragment cf = new CollectionFragment();
                         fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(0));
                         fragmentTransaction.addToBackStack(null);
@@ -93,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
                         break;
-                    case R.id.music:
+                    case R.id.setting:
                         //SettingFragment sf = new SettingFragment();
                         fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(2));
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
                         fragmentTransaction.commit();
                         break;
-                    case R.id.setting:
+                    case R.id.advice:
                         //SettingFragment sf = new SettingFragment();
                         fragmentTransaction.replace(R.id.contentContainer, fragmentList.get(3));
                         fragmentTransaction.addToBackStack(null);
