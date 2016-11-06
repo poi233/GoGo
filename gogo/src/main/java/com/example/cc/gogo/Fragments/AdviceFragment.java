@@ -1,6 +1,7 @@
 package com.example.cc.gogo.Fragments;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.cc.gogo.Activities.SettingsActivity;
 import com.example.cc.gogo.R;
 import com.example.cc.gogo.Service.StepCounterService;
 import com.example.cc.gogo.util.StepDetector;
+import com.lovearthstudio.duasdk.util.SharedPreferenceUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,9 +28,9 @@ public class AdviceFragment extends Fragment {
     private Double velocity = 0.0;// 速度：米每秒
     private int total_step = 0;   //走的总步数
     private Double distance = 0.0;// 路程：米
-    private int step_length = 0;  //步长
     private Thread thread;  //定义线程对象
-    private Double target = 40.0;
+    int step;
+    public static final String PREF_PROFILE = "profile";
 
 
     Handler handler = new Handler() {// Handler对象用于更新当前步数,定时发送消息，调用方法查询数据用于显示？？？？？？？？？？
@@ -41,10 +44,10 @@ public class AdviceFragment extends Fragment {
             // TODO Auto-generated method stub
             super.handleMessage(msg);        // 此处可以更新UI
             total_step = StepDetector.RUN_SETP + StepDetector.WALK_STEP;
-            double percent = total_step / target > 1 ? 100 : total_step / target * 100.0;
+            double percent = total_step / step > 1 ? 100 : total_step / step * 100.0;
             int per = (int) percent;
             tv_step_num.setText(String.valueOf(total_step));
-            tv_step_percent.setText(String.valueOf(per)+"%");
+            tv_step_percent.setText(String.valueOf(per) + "%");
         }
     };
 
@@ -58,6 +61,7 @@ public class AdviceFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_advice, container, false);
         initView();
+        init();
         mThread();
         return view;
     }
@@ -66,6 +70,15 @@ public class AdviceFragment extends Fragment {
         tv_step_num = (TextView) view.findViewById(R.id.step_num);
         tv_step_target = (TextView) view.findViewById(R.id.step_target);
         tv_step_percent = (TextView) view.findViewById(R.id.step_percent);
+    }
+
+    public void init(){
+        if (SharedPreferenceUtil.prefGetKey(getActivity(), PREF_PROFILE, "step", "").equals("")|SharedPreferenceUtil.prefGetKey(getActivity(), PREF_PROFILE, "step", "").equals("0"))
+            step = 10000;
+        else {
+            step = Integer.parseInt(SharedPreferenceUtil.prefGetKey(getActivity(), PREF_PROFILE, "step", ""));
+        }
+        tv_step_target.setText("目标"+step+"步");
     }
 
     public void mThread() {
@@ -99,14 +112,18 @@ public class AdviceFragment extends Fragment {
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         total_step = StepDetector.RUN_SETP + StepDetector.WALK_STEP;
-        double percent = total_step / target > 1 ? 100 : total_step / target * 100.0;
+        if (SharedPreferenceUtil.prefGetKey(getActivity(), PREF_PROFILE, "step", "").equals("")|SharedPreferenceUtil.prefGetKey(getActivity(), PREF_PROFILE, "step", "").equals("0"))
+            step = 10000;
+        else {
+            step = Integer.parseInt(SharedPreferenceUtil.prefGetKey(getActivity(), PREF_PROFILE, "step", ""));
+        }
+        double percent = total_step / step > 1 ? 100 : total_step / step * 100.0;
         int per = (int) percent;
         tv_step_num.setText(String.valueOf(total_step));
-        tv_step_percent.setText(String.valueOf(per)+"%");
+        tv_step_percent.setText(String.valueOf(per) + "%");
     }
 
 

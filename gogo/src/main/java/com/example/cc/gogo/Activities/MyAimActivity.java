@@ -43,31 +43,51 @@ public class MyAimActivity extends AppCompatActivity implements View.OnClickList
         String height = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "height", "");
         String weight = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "weight", "");
         String frequency = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "frequency", "");
-//设置目标步数
-        if (SettingsActivity.sharedPreferences != null) {
-            step_length = SettingsActivity.sharedPreferences.getInt(
-                    SettingsActivity.STEP_LENGTH_VALUE, 70);
-        } else {
-            step_length = 50;
-        }
-        target = Double.parseDouble(SharedPreferenceUtil.prefGetKey(getApplicationContext(), PREF_PROFILE, "target", ""));
-        double steps = target * 1000 * 100 / step_length / 3 * 2;
-        step = (int) steps;
-        target_step.setText(step + "步");
-        //设置系统推荐步数
         if (!(age.equals("") | height.equals("") | weight.equals("") | frequency.equals(""))) {
-            try {
+            //设置目标步数
+            if (SettingsActivity.sharedPreferences != null) {
+                step_length = SettingsActivity.sharedPreferences.getInt(
+                        SettingsActivity.STEP_LENGTH_VALUE, 70);
+            } else {
+                step_length = 50;
+            }
+            if (SharedPreferenceUtil.prefGetKey(getApplicationContext(), PREF_PROFILE, "target", "").equals("")) {
                 double[] elements = new double[]{Double.parseDouble(age), Double.parseDouble(height), Double.parseDouble(weight), Double.parseDouble(frequency)};
-                double advice_target = LinearRegressionPredict.calc_mile(elements);
-                steps = advice_target * 1000 * 100 / step_length / 3 * 2;
+                try {
+                    double advice_target = LinearRegressionPredict.calc_mile(elements);
+                    double steps = advice_target * 1000 * 100 / step_length / 3 * 2;
+                    step = (int) steps;
+                    SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "target", String.valueOf(advice_target));
+                    SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "step", String.valueOf(step));
+                    target_step.setText(step + "步");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                target = Double.parseDouble(SharedPreferenceUtil.prefGetKey(getApplicationContext(), PREF_PROFILE, "target", ""));
+                double steps = target * 1000 * 100 / step_length / 3 * 2;
                 step = (int) steps;
-                advice_step.setText(step + "步");
-            } catch (Exception e) {
-                e.printStackTrace();
+                SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "target", String.valueOf(target));
+                SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "step", String.valueOf(step));
+                target_step.setText(step + "步");
+            }
+            //设置系统推荐步数
+            if (!(age.equals("") | height.equals("") | weight.equals("") | frequency.equals(""))) {
+                try {
+                    double[] elements = new double[]{Double.parseDouble(age), Double.parseDouble(height), Double.parseDouble(weight), Double.parseDouble(frequency)};
+                    double advice_target = LinearRegressionPredict.calc_mile(elements);
+                    double steps = advice_target * 1000 * 100 / step_length / 3 * 2;
+                    step = (int) steps;
+                    advice_step.setText(step + "步");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
-
-
+        else {
+            advice_step.setText(10000 + "步");
+            target_step.setText(10000 + "步");
+        }
     }
 
     public void getView() {
@@ -108,95 +128,107 @@ public class MyAimActivity extends AppCompatActivity implements View.OnClickList
                         double steps;
                         switch (which) {
                             case 0:
-                                target = 1.4 * target;
+                                target = 1.4 * Double.parseDouble(SharedPreferenceUtil.prefGetKey(getApplicationContext(), PREF_PROFILE, "target", ""));
                                 steps = target * 1000 * 100 / step_length / 3 * 2;
                                 step = (int) steps;
                                 target_step.setText(step + "步");
                                 SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "target", String.valueOf(target));
+                                SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "step", String.valueOf(step));
                                 break;
                             case 1:
-                                target = 1.2 * target;
+                                target = 1.2 * Double.parseDouble(SharedPreferenceUtil.prefGetKey(getApplicationContext(), PREF_PROFILE, "target", ""));
                                 steps = target * 1000 * 100 / step_length / 3 * 2;
                                 step = (int) steps;
                                 target_step.setText(step + "步");
                                 SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "target", String.valueOf(target));
+                                SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "step", String.valueOf(step));
                                 break;
                             case 2:
-                                target = 1.00 * target;
+                                target = Double.parseDouble(SharedPreferenceUtil.prefGetKey(getApplicationContext(), PREF_PROFILE, "target", ""));
                                 steps = target * 1000 * 100 / step_length / 3 * 2;
                                 step = (int) steps;
                                 target_step.setText(step + "步");
                                 SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "target", String.valueOf(target));
+                                SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "step", String.valueOf(step));
                                 break;
                             case 3:
-                                target = 0.8 * target;
+                                target = 0.8 * Double.parseDouble(SharedPreferenceUtil.prefGetKey(getApplicationContext(), PREF_PROFILE, "target", ""));
                                 steps = target * 1000 * 100 / step_length / 3 * 2;
                                 step = (int) steps;
                                 target_step.setText(step + "步");
                                 SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "target", String.valueOf(target));
+                                SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "step", String.valueOf(step));
                                 break;
                             default:
                                 break;
                         }
-                }});
+                    }
+                });
                 builder.show();
-        break;
-        case R.id.use_advice:
-        String age = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "age", "");
-        String height = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "height", "");
-        String weight = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "weight", "");
-        String frequency = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "frequency", "");
+                break;
+            case R.id.use_advice:
+                String age = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "age", "");
+                String height = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "height", "");
+                String weight = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "weight", "");
+                String frequency = SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "frequency", "");
 
-        Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "age", ""));
-        Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "height", ""));
-        Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "weight", ""));
-        Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "frequency", ""));
+                Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "age", ""));
+                Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "height", ""));
+                Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "weight", ""));
+                Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "frequency", ""));
 
-        if (!(age.equals("") | height.equals("") | weight.equals("") | frequency.equals(""))) {
-            try {
-                Log.i("target_result", "in");
-                double[] elements = new double[]{Double.parseDouble(age), Double.parseDouble(height), Double.parseDouble(weight), Double.parseDouble(frequency)};
-                //double target = LinearRegressionPredict.calc_mile(Double.parseDouble(age), Double.parseDouble(height), Double.parseDouble(weight), Double.parseDouble(frequency));
-                target = LinearRegressionPredict.calc_mile(elements);
-                Log.i("target_result", target + "");
-                SharedPreferenceUtil.prefSetKey(this, PREF_PROFILE, "target", String.valueOf(target));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        builder = new AlertDialog.Builder(MyAimActivity.this);
-        Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "target", ""));
-        if (SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "target", "") == null) {
-            builder.setTitle("提示");
-            builder.setMessage("请完善个人信息");
-            builder.setPositiveButton("确认", null);
-            builder.show();
-        } else {
-            if (SettingsActivity.sharedPreferences != null) {
-                step_length = SettingsActivity.sharedPreferences.getInt(
-                        SettingsActivity.STEP_LENGTH_VALUE, 70);
-            } else {
-                step_length = 50;
-            }
-            Log.i("steps", target + "");
-            double steps = target * 1000 * 100 / step_length / 3 * 2;
-            step = (int) steps;
-            Log.i("steps", steps + "");
-            builder.setTitle("确认");
-            builder.setMessage("已使用推荐设置！");
-            builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //确定按钮的点击事件
-                    advice_step.setText(step + "步");
-                    target_step.setText(step + "步");
+                if (!(age.equals("") | height.equals("") | weight.equals("") | frequency.equals(""))) {
+                    try {
+                        double[] elements = new double[]{Double.parseDouble(age), Double.parseDouble(height), Double.parseDouble(weight), Double.parseDouble(frequency)};
+                        //double target = LinearRegressionPredict.calc_mile(Double.parseDouble(age), Double.parseDouble(height), Double.parseDouble(weight), Double.parseDouble(frequency));
+                        target = LinearRegressionPredict.calc_mile(elements);
+                        Log.i("target_result", target + "");
+                        SharedPreferenceUtil.prefSetKey(this, PREF_PROFILE, "target", String.valueOf(target));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            });
-            builder.show();
+                builder = new AlertDialog.Builder(MyAimActivity.this);
+                Log.i("target", SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "target", ""));
+                if (SharedPreferenceUtil.prefGetKey(this, PREF_PROFILE, "target", "").equals("")) {
+                    builder.setTitle("提示");
+                    builder.setMessage("请完善个人信息");
+                    builder.setPositiveButton("确认", null);
+                    builder.show();
+                } else {
+                    if (SettingsActivity.sharedPreferences != null) {
+                        step_length = SettingsActivity.sharedPreferences.getInt(
+                                SettingsActivity.STEP_LENGTH_VALUE, 70);
+                    } else {
+                        step_length = 50;
+                    }
+                    Log.i("steps", target + "");
+                    double steps = target * 1000 * 100 / step_length / 3 * 2;
+                    step = (int) steps;
+                    SharedPreferenceUtil.prefSetKey(getApplicationContext(), PREF_PROFILE, "step", String.valueOf(step));
+                    Log.i("steps", steps + "");
+                    builder.setTitle("确认");
+                    builder.setMessage("已使用推荐设置！");
+                    builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //确定按钮的点击事件
+                            advice_step.setText(step + "步");
+                            target_step.setText(step + "步");
+                        }
+                    });
+                    builder.show();
+                }
+                break;
+            default:
+                break;
         }
-        break;
-        default:
-        break;
     }
-}
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        init();
+    }
 }
