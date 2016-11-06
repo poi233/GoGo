@@ -27,9 +27,6 @@
             android:name=".Activities.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.Sample1Activity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Activities.StepsActivity"
             android:screenOrientation="portrait">
             <meta-data

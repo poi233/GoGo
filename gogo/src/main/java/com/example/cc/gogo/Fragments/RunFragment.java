@@ -182,7 +182,7 @@ public class RunFragment extends Fragment implements View.OnClickListener {
                     int temp = 0;
                     while (true) {
                         try {
-                            Thread.sleep(300);
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -308,9 +308,9 @@ public class RunFragment extends Fragment implements View.OnClickListener {
             run_disatance = ((StepDetector.RUN_SETP) / 2 * 3 + 1) * step_length * 0.01;
         }
         if ((StepDetector.WALK_STEP) == 0) {
-            walk_disance = ((StepDetector.WALK_STEP) / 2) * 3 * step_length * 0.01;
+            walk_disance = ((StepDetector.WALK_STEP) / 2) * 3 * step_length / 2 * 0.01;
         } else {
-            walk_disance = ((StepDetector.WALK_STEP) / 2 * 3 + 1) * step_length * 0.01;
+            walk_disance = ((StepDetector.WALK_STEP) / 2 * 3 + 1) * step_length / 2 * 0.01;
         }
     }
 
@@ -318,23 +318,10 @@ public class RunFragment extends Fragment implements View.OnClickListener {
      * 实际的步数
      */
     private void countStep() {
-        if ((StepDetector.WALK_STEP + StepDetector.RUN_SETP) % 2 == 0) {
-            total_step = (StepDetector.WALK_STEP + StepDetector.RUN_SETP);
-        } else {
-            total_step = (StepDetector.WALK_STEP + StepDetector.RUN_SETP) + 1;
-        }
+        total_step = (StepDetector.WALK_STEP + StepDetector.RUN_SETP);
+        run_step = StepDetector.RUN_SETP;
+        walk_step = StepDetector.WALK_STEP;
 
-        if (StepDetector.RUN_SETP % 2 == 0) {
-            run_step = StepDetector.RUN_SETP;
-        } else {
-            run_step = StepDetector.RUN_SETP + 1;
-        }
-
-        if (StepDetector.WALK_STEP % 2 == 0) {
-            walk_step = StepDetector.WALK_STEP;
-        } else {
-            walk_step = StepDetector.WALK_STEP + 1;
-        }
         /*walk_step = StepDetector.WALK_STEP;
         run_step = StepDetector.RUN_SETP;
         total_step = StepDetector.CURRENT_SETP;*/
